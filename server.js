@@ -7,6 +7,20 @@ const fs = require('fs');
 const ajv = new Ajv({ allErrors: true, removeAdditional: true });
 const explainSchema = JSON.parse(fs.readFileSync(path.join(__dirname,'schemas','explain.schema.json')));
 const validateExplain = ajv.compile(explainSchema);
+// ensure logs directory exists
+const logsDir = path.join(__dirname,'logs');
+if(!fs.existsSync(logsDir)) fs.mkdirSync(logsDir, { recursive:true });
+
+function logAjvErrors({topic, level, style, errors, raw}){
+  try{
+    const out = {
+      time: new Date().toISOString(), topic, level, style,
+      errors: errors || null,
+      rawPreview: raw ? String(raw).slice(0,2000) : null
+    };
+    fs.appendFileSync(path.join(logsDir,'ajv-errors.log'), JSON.stringify(out, null, 2) + '\n---\n');
+  }catch(e){ console.error('Failed to write AJV log', e); }
+}
 
 // Note: Node 18+ includes a global `fetch`. This server uses the global fetch.
 
@@ -126,7 +140,8 @@ app.post('/api/solver/solve', express.json(), async (req, res) => {
 });
 
 function buildPrompt({ topic='Topic', level='General', style='Conceptual' }){
-  return `You are NOVA Mentor. Produce a JSON object with keys: topic, level, style, definition, analogy, simulation (with url/hint), commonMistakes (array of strings), memoryTrick, pyq (question and solution), miniQuiz (array of {id, stem, choices, answer, rationale}), recommendation. Keep answers concise and educational. Topic: ${topic}. Level: ${level}. Style: ${style}.`;
+  // Few-shot example and strict JSON instruction to improve model compliance
+  return `You are NOVA Mentor. Return ONLY a single VALID JSON object (no markdown, no explanation) matching this exact shape:\n{\n  "topic": "...",\n  "level": "...",\n  "style": "...",\n  "definition": "...",\n  "analogy": "...",\n  "simulation": {"type":"link","url":"...","hint":"..."},\n  "commonMistakes": ["..."],\n  "memoryTrick": "...",\n  "pyq": {"question":"...","solution":"..."},\n  "miniQuiz": [{"id":"...","stem":"...","choices":["..."],"answer":0,"rationale":"..."}],\n  "recommendation": "..."\n}\n\nExample:\n{\n  "topic":"Mirror Formula",\n  "level":"Class 12",\n  "style":"Conceptual",\n  "definition":"Mirror formula relates object and image distances: 1/f = 1/v + 1/u.",\n  "analogy":"Think of focusing light like using a magnifying glass to concentrate rays.",\n  "simulation":{"type":"link","url":"#","hint":"Try moving object distance"},\n  "commonMistakes":["Sign convention","Using focal length incorrectly"],\n  "memoryTrick":"Use 'F=V+U' mnemonic for 1/f = 1/v + 1/u",\n  "pyq":{"question":"A 10 cm focal length mirror produces...","solution":"Work shown."},\n  "miniQuiz":[{"id":"q1","stem":"Formula sign?","choices":["+","-"],"answer":0,"rationale":"Depends on mirror type."}],\n  "recommendation":"Try related topic: Lens maker's equation."\n}\n\nProduce concise, student-friendly content appropriate for Level: ${level} and Style: ${style}. Topic: ${topic}. Limit strings to ~600 characters where possible. Output ONLY valid JSON.`;
 }
 
 function mockExplain({ topic='Topic', level='General', style='Conceptual' }){
