@@ -2,6 +2,11 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
+const Ajv = require('ajv');
+const fs = require('fs');
+const ajv = new Ajv({ allErrors: true, removeAdditional: true });
+const explainSchema = JSON.parse(fs.readFileSync(path.join(__dirname,'schemas','explain.schema.json')));
+const validateExplain = ajv.compile(explainSchema);
 
 // Note: Node 18+ includes a global `fetch`. This server uses the global fetch.
 
@@ -74,10 +79,36 @@ app.post('/api/nli/explain', async (req, res) => {
 
     const usage = json.usage || null;
 
-    if (parsed && parsed.definition) return res.json({ ...parsed, _usage: usage });
+    // If parsed JSON is present, validate and return
+    if (parsed) {
+      const valid = validateExplain(parsed);
+      if (valid) return res.json({ ...parsed, _usage: usage });
+      // If invalid, attempt up to 2 retries by asking the model to return strictly JSON
+    }
 
-    // Fallback: wrap text into the explain schema and include raw content
-    return res.json({ topic, level, style, definition: content.substring(0, 2000), analogy: '', simulation: {type:'text', hint:''}, commonMistakes: [], memoryTrick:'', pyq:{question:'',solution:''}, miniQuiz:[], recommendation:'', _usage: usage, _raw: content });
+    // Retry loop: ask model to return JSON only, up to 2 retries
+    let attempts = 0; let final = null; let rawContent = content;
+    while(attempts < 2 && !final){
+      attempts++;
+      const instruct = `${buildPrompt({topic, level, style})}\n\nIMPORTANT: Return ONLY valid JSON matching the schema without any explanatory text or markdown.`;
+      const payload2 = { model:'gpt-4o-mini', messages:[{role:'user', content: instruct}], max_tokens:700, temperature:0.2 };
+      const r2 = await fetch('https://api.openai.com/v1/chat/completions', { method:'POST', headers:{'Content-Type':'application/json','Authorization':`Bearer ${OPENAI_KEY}`}, body:JSON.stringify(payload2) });
+      if (!r2.ok) break;
+      const j2 = await r2.json();
+      const c2 = j2.choices?.[0]?.message?.content || j2.choices?.[0]?.text || '';
+      rawContent += '\n\n----\n' + c2;
+      try{
+        const cleaned = c2.replace(/```json|```/gi,'').trim();
+        const p2 = JSON.parse(cleaned);
+        const ok = validateExplain(p2);
+        if(ok){ final = p2; final._usage = j2.usage || null; break; }
+      }catch(e){ }
+    }
+
+    if(final) return res.json(final);
+
+    // Final fallback: wrap as basic explain object
+    return res.json({ topic, level, style, definition: content.substring(0, 2000), analogy: '', simulation: {type:'text', hint:''}, commonMistakes: [], memoryTrick:'', pyq:{question:'',solution:''}, miniQuiz:[], recommendation:'', _usage: usage, _raw: rawContent });
 
   } catch (err) {
     console.error(err);
