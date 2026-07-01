@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Project NOVA Platform | The Future of Science Education</title>
+
+    <!-- Google Fonts -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap"
+          rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/animations.css">
+    <link rel="stylesheet" href="assets/css/nli.css">
+    <link rel="stylesheet" href="assets/css/visualize.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+
+</head>
+
+<body>
+
+    <div class="page-vibe">
+        <div class="background-grid"></div>
+        <div class="background-lines"></div>
+        <div class="background-blob blob-a"></div>
+        <div class="background-blob blob-b"></div>
+    </div>
+    <div class="ambient-nebula" aria-hidden="true"></div>
+    <div class="page-transition-overlay" id="page-transition-overlay" aria-hidden="true"></div>
+
+    <div id="page-loader" class="page-loader cinematic" role="status" aria-live="polite">
+        <canvas id="loader-explosion-canvas" class="loader-explosion-canvas" aria-hidden="true"></canvas>
+        <div class="loader-topbars" aria-hidden="true">██████████████████████████</div>
+        <div class="loader-panel">
+            <div class="loader-logo">PROJECT NOVA</div>
+
+            <ul class="loader-steps" aria-hidden="true">
+                <li>Initializing Education Engine...</li>
+                <li>Loading Physics...</li>
+                <li>Loading Chemistry...</li>
+                <li>Loading Mathematics...</li>
+                <li>Preparing AI Assistant...</li>
+            </ul>
+
+            <div class="loader-identity" id="loader-identity">Science Engine Loading... □□□□□□□□□</div>
+
+            <div class="loader-bar cinematic-bar" aria-hidden="true">
+                <div class="progress-fill"></div>
+            </div>
+
+            <div class="loader-percent" aria-hidden="true">0%</div>
+        </div>
+        <div class="loader-bottombars" aria-hidden="true">██████████████████████████</div>
+    </div>
+
+    <header class="header">
+
+        <nav class="navbar">
+
+            <div class="logo">
+
+                PROJECT <span>NOVA</span>
+                <button id="nli-open-btn" class="nli-open-btn magnetic" aria-label="Open NOVA Mentor">NOVA Mentor</button>
+
+            </div>
+
+            <ul class="nav-links">
+
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#contact">Contact</a></li>
+
+            </ul>
+
+            <div class="nav-actions">
+
+                <button class="theme-toggle magnetic" type="button" aria-label="Switch to light mode">
+                    <span class="sun-icon">&#9728;</span>
+                    <span class="moon-icon">&#9790;</span>
+                </button>
+
+                <a href="#contact" class="primary-btn magnetic">
+                    Book Demo
+                </a>
+
+                <button class="portal-login-btn magnetic" type="button">
+                    Student Login
+                </button>
+
+                <button class="teacher-login-btn magnetic" type="button">
+                    Teacher
+                </button>
+
+            </div>
+
+        </nav>
+
+    </header>
+
+    <main>
+
+        <!-- NOVA Mentor Panel -->
+        <aside id="nli-panel" class="nli-panel" aria-hidden="true">
+            <div class="nli-shell">
+                <header class="nli-header">
+                    <h2>NOVA Mentor</h2>
+                        <div class="nli-header-right">
+                            <div class="nli-avatar" aria-hidden="true" title="NOVA Mentor">
+                                <!-- simple SVG avatar -->
+                                <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient id="g1" x1="0" x2="1">
+                                            <stop offset="0" stop-color="#4F46E5"/>
+                                            <stop offset="1" stop-color="#06B6D4"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g1)" />
+                                    <circle cx="24" cy="18" r="6" fill="white" opacity="0.95" />
+                                    <path d="M12 36c2.5-6 11-6 12-6s9.5 0 12 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
+                                </svg>
+                            </div>
+                            <button id="nli-close" class="nli-close" aria-label="Close mentor">×</button>
+                        </div>
+                </header>
+
+                <form id="nli-form" class="nli-form">
+                    <label>
+                        Your level
+                        <select name="level" id="nli-level">
+                            <option value="Class 11">Class 11</option>
+                            <option value="Class 12">Class 12</option>
+                            <option value="JEE">JEE</option>
+                            <option value="NEET">NEET</option>
+                            <option value="CUET">CUET</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Style
+                        <div class="nli-styles">
+                            <button type="button" class="nli-style" data-style="Visual">Visual</button>
+                            <button type="button" class="nli-style" data-style="Mathematical">Mathematical</button>
+                            <button type="button" class="nli-style" data-style="Conceptual">Conceptual</button>
+                            <button type="button" class="nli-style" data-style="PYQ">PYQ-Oriented</button>
+                            <button type="button" class="nli-style" data-style="Revision">Revision</button>
+                        </div>
+                    </label>
+
+                    <label>
+                        Ask NOVA Mentor
+                        <textarea id="nli-query" rows="3" placeholder="e.g. Explain Mirror Formula" required></textarea>
+                    </label>
+
+                    <div class="nli-actions">
+                        <button type="submit" class="primary-btn">Explain</button>
+                        <button type="button" id="nli-sample" class="secondary-btn">Try sample: Electric Field</button>
+                    </div>
+                </form>
+
+                <div id="nli-output" class="nli-output" aria-live="polite"></div>
+            </div>
+        </aside>
+
+        <section class="hero" id="home">
+
+            <div class="hero-content animate fade-up" data-animate="fade-up" data-delay="0">
+
+                <span class="hero-tag">
+                    🚀 Future of Learning
+                </span>
+
+                <h1>
+
+                    THE FUTURE OF
+                    <span>SCIENCE EDUCATION</span>
+
+                </h1>
+
+                <p>
+
+                    Learn Physics, Chemistry and Mathematics through
+                    visual learning, conceptual understanding and
+                    real-world applications.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#" class="btn-primary magnetic">
+
+                        Book Free Demo
+
+                    </a>
+
+                    <a href="#" class="btn-secondary magnetic">
+
+                        Explore Courses
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-visual animate slide-up" data-animate="slide-up" data-delay="0.15">
+
+                <div id="tsparticles"></div>
+
+                <div id="nova-3d-scene" class="nova-3d-scene" aria-hidden="true"></div>
+
+                <div class="orb">
+
+                    <div class="orbit orbit1"><span class="electron"></span></div>
+
+                    <div class="orbit orbit2"><span class="electron"></span></div>
+
+                    <div class="orbit orbit3"><span class="electron"></span></div>
+
+                    <div class="nucleus"></div>
+
+                    <div class="energy"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Visualize and Practice sections (prototypes) -->
+        <section id="visualize-root" class="visualize-root" style="margin:18px 12px; display:block;">
+            <h3 style="margin:0 0 8px 0;">Visualize — Interactive Simulation</h3>
+            <!-- visualize.js mounts a canvas here -->
+        </section>
+
+        <section id="practice-root" class="visualize-root" style="margin:18px 12px; display:block;">
+            <h3 style="margin:0 0 8px 0;">Practice — Mini Quiz</h3>
+            <div id="practice-mount"></div>
+        </section>
+
+        <!-- =========================
+        ABOUT
+========================== -->
+
+        <section class="about" id="about">
+
+            <div class="about-left animate slide-right" data-animate="slide-right" data-delay="0.15">
+
+                <span class="section-tag">
+                    ABOUT US
+                </span>
+
+                <h2>
+
+                    WHERE
+                    <span>CURIOSITY</span>
+                    MEETS
+                    EXCELLENCE
+
+                </h2>
+
+                <p>
+
+                    At Nirupam Science Edge, we believe science should be
+                    understood—not memorized.
+
+                    Our teaching combines visualization, practical examples,
+                    structured learning and personal mentoring to help every
+                    student unlock their full academic potential.
+
+                </p>
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        <h3>7+</h3>
+                        <span>Years Experience</span>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <h3>500+</h3>
+                        <span>Students Mentored</span>
+
+                    </div>
+
+                    <div class="stat">
+
+                        <h3>95%</h3>
+                        <span>Success Rate</span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="about-right">
+
+                <div class="glass-card tilt-card animate slide-left" data-animate="slide-left" data-delay="0.2">
+
+                    <h3>Our Mission</h3>
+
+                    <p>
+
+                        To create confident learners capable of excelling
+                        in Boards, CUET, JEE and NEET through concept-first
+                        education.
+
+                    </p>
+
+                </div>
+
+                <div class="glass-card tilt-card animate slide-left" data-animate="slide-left" data-delay="0.28">
+
+                    <h3>Our Vision</h3>
+
+                    <p>
+
+                        To become Northeast India's most trusted science
+                        coaching institute through innovation,
+                        visualization and quality teaching.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        COURSES
+========================== -->
+
+        <section class="courses" id="courses">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">
+                    OUR PROGRAMS
+                </span>
+
+                <h2>
+                    CHOOSE YOUR LEARNING PATH
+                </h2>
+
+                <p>
+
+                    Structured courses designed for school excellence,
+                    board examinations and competitive success.
+
+                </p>
+
+            </div>
+
+            <div class="course-grid">
+
+                <!-- Card 1 -->
+
+                <div class="course-card animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                    <div class="course-icon">🧪</div>
+
+                    <h3>Class 11 Science</h3>
+
+                    <p>
+
+                        Physics, Chemistry & Mathematics with concept-first teaching.
+
+                    </p>
+
+                    <ul>
+
+                        <li>✓ Weekly Tests</li>
+                        <li>✓ Notes Included</li>
+                        <li>✓ Doubt Classes</li>
+
+                    </ul>
+
+                    <a href="#">Learn More →</a>
+
+                </div>
+
+                <!-- Card 2 -->
+
+                <div class="course-card featured animate fade-up" data-animate="fade-up" data-delay="0.2">
+
+                    <span class="badge">
+
+                        MOST POPULAR
+
+                    </span>
+
+                    <div class="course-icon">🚀</div>
+
+                    <h3>Class 12 Boards</h3>
+
+                    <p>
+
+                        Complete preparation for Boards,
+                        CUET and competitive exams.
+
+                    </p>
+
+                    <ul>
+
+                        <li>✓ PYQ Practice</li>
+                        <li>✓ Mock Tests</li>
+                        <li>✓ Personal Mentoring</li>
+
+                    </ul>
+
+                    <a href="#">Enroll Now →</a>
+
+                </div>
+
+                <!-- Card 3 -->
+
+                <div class="course-card animate fade-up" data-animate="fade-up" data-delay="0.28">
+
+                    <div class="course-icon">🎯</div>
+
+                    <h3>Foundation Program</h3>
+
+                    <p>
+
+                        Build strong fundamentals for future
+                        JEE & NEET preparation.
+
+                    </p>
+
+                    <ul>
+
+                        <li>✓ Concept Building</li>
+                        <li>✓ Problem Solving</li>
+                        <li>✓ Weekly Assessment</li>
+
+                    </ul>
+
+                    <a href="#">Explore →</a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        RESULTS
+========================== -->
+
+        <section class="results" id="results">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">
+                    OUR ACHIEVEMENTS
+                </span>
+
+                <h2>
+                    NUMBERS THAT SPEAK
+                </h2>
+
+                <p>
+
+                    Every number represents hard work,
+                    dedication and student success.
+
+                </p>
+
+            </div>
+
+            <div class="results-grid">
+
+                <div class="result-card tilt-card animate scale-up" data-animate="scale-up" data-delay="0.1">
+
+                    <h3>500+</h3>
+
+                    <span>STUDENTS MENTORED</span>
+
+                </div>
+
+                <div class="result-card tilt-card animate scale-up" data-animate="scale-up" data-delay="0.18">
+
+                    <h3>95%</h3>
+
+                    <span>BOARD SUCCESS RATE</span>
+
+                </div>
+
+                <div class="result-card tilt-card animate scale-up" data-animate="scale-up" data-delay="0.26">
+
+                    <h3>7+</h3>
+
+                    <span>YEARS EXPERIENCE</span>
+
+                </div>
+
+                <div class="result-card tilt-card animate scale-up" data-animate="scale-up" data-delay="0.34">
+
+                    <h3>50+</h3>
+
+                    <span>TOP RANK HOLDERS</span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        STUDENT JOURNEY
+========================== -->
+
+        <section class="journey" id="journey">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">
+                    STUDENT JOURNEY
+                </span>
+
+                <h2>
+
+                    YOUR PATH TO SUCCESS
+
+                </h2>
+
+                <p>
+
+                    Every student follows a structured learning journey
+                    designed for consistent improvement.
+
+                </p>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-progress"></div>
+
+                <div class="timeline-item" data-timeline="0">
+
+                    <div class="circle">1</div>
+
+                    <h3>Admission</h3>
+
+                    <p>
+                        Personal counselling and batch selection.
+                    </p>
+
+                </div>
+
+                <div class="timeline-item" data-timeline="1">
+
+                    <div class="circle">2</div>
+
+                    <h3>Concept Learning</h3>
+
+                    <p>
+                        Interactive classroom with visual explanations.
+                    </p>
+
+                </div>
+
+                <div class="timeline-item" data-timeline="2">
+
+                    <div class="circle">3</div>
+
+                    <h3>Weekly Tests</h3>
+
+                    <p>
+                        Performance tracking through regular assessments.
+                    </p>
+
+                </div>
+
+                <div class="timeline-item" data-timeline="3">
+
+                    <div class="circle">4</div>
+
+                    <h3>Board Success</h3>
+
+                    <p>
+                        Confident exam performance and outstanding results.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        WHY CHOOSE US
+========================== -->
+
+        <section class="why" id="why">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                <span class="section-tag">
+
+                    WHY CHOOSE US
+
+                </span>
+
+                <h2>
+
+                    WHAT MAKES US DIFFERENT
+
+                </h2>
+
+                <p>
+
+                    We combine technology, concept-based learning and
+                    personal mentoring to help every student succeed.
+
+                </p>
+
+            </div>
+
+            <div class="why-grid">
+
+                <div class="why-card">
+
+                    <div class="why-icon">🧠</div>
+
+                    <h3>Concept Based Learning</h3>
+
+                    <p>
+                        Understand every topic instead of memorizing formulas.
+                    </p>
+
+                </div>
+
+                <div class="why-card">
+
+                    <div class="why-icon">📈</div>
+
+                    <h3>Weekly Progress Reports</h3>
+
+                    <p>
+                        Parents receive regular performance updates.
+                    </p>
+
+                </div>
+
+                <div class="why-card">
+
+                    <div class="why-icon">🎯</div>
+
+                    <h3>Competitive Preparation</h3>
+
+                    <p>
+                        Board + CUET + JEE + NEET strategy together.
+                    </p>
+
+                </div>
+
+                <div class="why-card">
+
+                    <div class="why-icon">👨‍🏫</div>
+
+                    <h3>Small Batches</h3>
+
+                    <p>
+                        More attention. More interaction. Better learning.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        TESTIMONIALS
+========================== -->
+
+        <section class="testimonials" id="testimonials">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                <span class="section-tag">
+
+                    TESTIMONIALS
+
+                </span>
+
+                <h2>
+
+                    STUDENTS LOVE LEARNING HERE
+
+                </h2>
+
+                <p>
+
+                    Real experiences from students who transformed their learning journey.
+
+                </p>
+
+            </div>
+
+            <div class="testimonial-carousel-wrapper">
+
+                <div class="testimonial-carousel">
+
+                    <div class="testimonial-slide">
+
+                        <div class="testimonial-card tilt-card animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                            <p>
+
+                                "The concept-first teaching completely changed the way I study Physics."
+
+                            </p>
+
+                            <h3>Rahul Sharma</h3>
+
+                            <span>Class 12 Student</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="testimonial-slide">
+
+                        <div class="testimonial-card tilt-card animate fade-up" data-animate="fade-up" data-delay="0.2">
+
+                            <p>
+
+                                "Weekly tests helped me improve consistently. I became much more confident."
+
+                            </p>
+
+                            <h3>Priya Das</h3>
+
+                            <span>Class 11 Student</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="testimonial-slide">
+
+                        <div class="testimonial-card tilt-card animate fade-up" data-animate="fade-up" data-delay="0.28">
+
+                            <p>
+
+                                "The teachers explain difficult topics in a very simple and visual way."
+
+                            </p>
+
+                            <h3>Aman Singh</h3>
+
+                            <span>Foundation Student</span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="carousel-nav">
+
+                    <button class="carousel-btn prev" aria-label="Previous slide">‹</button>
+
+                    <div class="carousel-dots">
+
+                        <button class="dot active" data-slide="0" aria-label="Slide 1"></button>
+
+                        <button class="dot" data-slide="1" aria-label="Slide 2"></button>
+
+                        <button class="dot" data-slide="2" aria-label="Slide 3"></button>
+
+                    </div>
+
+                    <button class="carousel-btn next" aria-label="Next slide">›</button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="cta contact-section" id="contact">
+
+            <div class="cta-container">
+
+                <span class="section-tag">
+                    GET STARTED
+                </span>
+
+                <h2>
+                    READY TO BUILD YOUR FUTURE?
+                </h2>
+
+                <p>
+                    Join hundreds of students learning through concept-first education.
+                    Book a free demo class today and experience the Nirupam Science Edge difference.
+                </p>
+
+                <div class="cta-buttons">
+
+                    <a href="#contact-form" class="primary-btn magnetic">
+                        Book Free Demo
+                    </a>
+
+                    <a href="mailto:info@nse.com" class="secondary-btn magnetic">
+                        Contact Us
+                    </a>
+
+                </div>
+
+                <div class="contact-panel animate fade-up" data-animate="fade-up" data-delay="0.16">
+
+                    <div class="map-card">
+
+                        <iframe
+                            title="Nirupam Science Edge location in Shillong"
+                            src="https://www.google.com/maps?q=Shillong%2C%20Meghalaya&output=embed"
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+                        <div class="map-pin" aria-hidden="true">
+                            <span></span>
+                        </div>
+
+                    </div>
+
+                    <form class="contact-form" id="contact-form">
+
+                        <div class="form-heading">
+
+                            <span class="section-tag">BOOK A DEMO</span>
+
+                            <h3>Send Us Your Details</h3>
+
+                        </div>
+
+                        <label>
+                            Student Name
+                            <input type="text" name="name" placeholder="Enter student name" required>
+                        </label>
+
+                        <label>
+                            Phone Number
+                            <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
+                        </label>
+
+                        <label>
+                            Program
+                            <select name="program" required>
+                                <option value="">Choose a program</option>
+                                <option value="Class 11 Science">Class 11 Science</option>
+                                <option value="Class 12 Boards">Class 12 Boards</option>
+                                <option value="Foundation Program">Foundation Program</option>
+                            </select>
+                        </label>
+
+                        <label>
+                            Message
+                            <textarea name="message" rows="4" placeholder="Tell us what you need help with"></textarea>
+                        </label>
+
+                        <button class="primary-btn magnetic form-submit" type="submit">
+                            Send Enquiry
+                        </button>
+
+                        <p class="form-status" aria-live="polite"></p>
+
+                    </form>
+
+                </div>
+
+                <div class="contact-info">
+
+                    <div class="contact-box">
+
+                        📞
+
+                        <h3>Phone</h3>
+
+                        <p>+91 XXXXX XXXXX</p>
+
+                    </div>
+
+                    <div class="contact-box">
+
+                        📍
+
+                        <h3>Location</h3>
+
+                        <p>Shillong, Meghalaya</p>
+
+                    </div>
+
+                    <div class="contact-box">
+
+                        ✉️
+
+                        <h3>Email</h3>
+
+                        <p>info@nse.com</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="footer">
+
+        <div class="footer-wave" aria-hidden="true">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64 C180,124 360,4 540,54 C720,104 900,116 1080,56 C1230,6 1360,28 1440,58 L1440,120 L0,120 Z"></path>
+            </svg>
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,70 C190,20 350,112 540,62 C730,12 910,28 1080,74 C1235,116 1358,76 1440,48 L1440,120 L0,120 Z"></path>
+            </svg>
+        </div>
+
+        <div class="footer-container">
+
+            <div class="footer-logo">
+
+                <h2>NIRUPAM SCIENCE EDGE</h2>
+
+                <p>
+                    Concept First Learning.
+                    Visual Understanding.
+                    Real Success.
+                </p>
+
+                <div class="social-links" aria-label="Social links">
+                    <a href="#" class="social-link magnetic" aria-label="Instagram">IG</a>
+                    <a href="#" class="social-link magnetic" aria-label="YouTube">YT</a>
+                    <a href="#" class="social-link magnetic" aria-label="LinkedIn">IN</a>
+                    <a href="#" class="social-link magnetic" aria-label="Facebook">FB</a>
+                </div>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>Quick Links</h3>
+
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#courses">Courses</a>
+                <a href="#results">Results</a>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>Programs</h3>
+
+                <a href="#">Class 11</a>
+                <a href="#">Class 12</a>
+                <a href="#">Foundation</a>
+
+            </div>
+
+            <div class="footer-links">
+
+                <h3>Contact</h3>
+
+                <p>Shillong, Meghalaya</p>
+
+                <p>+91 XXXXX XXXXX</p>
+
+                <p>info@nse.com</p>
+
+            </div>
+
+            <div class="footer-newsletter">
+
+                <h3>Science Updates</h3>
+
+                <p>Get demo dates, exam tips and concept notes in your inbox.</p>
+
+                <form class="newsletter-form">
+                    <input type="email" name="email" placeholder="Email address" required>
+                    <button type="submit" class="magnetic">Join</button>
+                </form>
+
+                <span class="newsletter-status" aria-live="polite"></span>
+
+            </div>
+
+        </div>
+
+        <div class="copyright">
+
+            <span class="copyright-text">&copy; 2026 Nirupam Science Edge. All Rights Reserved.</span>
+
+            © 2026 Nirupam Science Edge.
+            All Rights Reserved.
+
+        </div>
+
+    </footer>
+
+    <button class="back-to-top magnetic" type="button" aria-label="Back to top">
+        &#128640;
+    </button>
+
+    <section class="student-portal" aria-hidden="true">
+
+        <div class="portal-backdrop"></div>
+
+        <div class="portal-shell">
+
+            <aside class="portal-login-panel">
+
+                <span class="section-tag">STUDENT PORTAL</span>
+
+                <h2>Welcome Back</h2>
+
+                <p>Login preview for students to track classes, homework, attendance, scores, notes and lectures.</p>
+
+                <form class="portal-login-form">
+                    <label>
+                        Student ID
+                        <input type="text" name="studentId" value="NOVA-1207" required>
+                    </label>
+
+                    <label>
+                        Password
+                        <input type="password" name="password" value="demo123" required>
+                    </label>
+
+                    <button type="submit" class="primary-btn magnetic">Open Dashboard</button>
+                </form>
+
+                <button class="portal-close" type="button" aria-label="Close student portal">
+                    &times;
+                </button>
+
+            </aside>
+
+            <div class="portal-dashboard">
+
+                <div class="dashboard-topbar">
+                    <div>
+                        <span class="section-tag">CLASS 12 SCIENCE</span>
+                        <h2>Student Dashboard</h2>
+                    </div>
+
+                    <div class="student-chip">
+                        <span>NS</span>
+                        <div>
+                            <strong>NOVA Student</strong>
+                            <small>Board + CUET Track</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="dash-stat">
+                        <span>Attendance</span>
+                        <strong>92%</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Homework</span>
+                        <strong>8/10</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Avg. Score</span>
+                        <strong>86%</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Notes</span>
+                        <strong>24</strong>
+                    </div>
+                </div>
+
+                <div class="dashboard-grid">
+                    <article class="dashboard-card upcoming-card">
+                        <h3>Upcoming Classes</h3>
+                        <ul>
+                            <li><span>Today</span> Electrostatics Revision <strong>5:00 PM</strong></li>
+                            <li><span>Wed</span> Organic Chemistry Practice <strong>6:30 PM</strong></li>
+                            <li><span>Fri</span> Calculus Problem Lab <strong>5:30 PM</strong></li>
+                        </ul>
+                    </article>
+
+                    <article class="dashboard-card homework-card">
+                        <h3>Homework</h3>
+                        <div class="task-row"><span></span> Physics numericals set 04 <strong>Due Tomorrow</strong></div>
+                        <div class="task-row done"><span></span> Chemistry PYQ worksheet <strong>Done</strong></div>
+                        <div class="task-row"><span></span> Math integration drill <strong>2 Days</strong></div>
+                    </article>
+
+                    <article class="dashboard-card chart-card">
+                        <h3>Progress Chart</h3>
+                        <canvas id="progressChart" width="520" height="220"></canvas>
+                    </article>
+
+                    <article class="dashboard-card scores-card">
+                        <h3>Test Scores</h3>
+                        <div class="score-line"><span>Physics</span><div><b style="width:88%"></b></div><strong>88</strong></div>
+                        <div class="score-line"><span>Chemistry</span><div><b style="width:82%"></b></div><strong>82</strong></div>
+                        <div class="score-line"><span>Math</span><div><b style="width:91%"></b></div><strong>91</strong></div>
+                    </article>
+
+                    <article class="dashboard-card notes-card">
+                        <h3>Notes</h3>
+                        <a href="#">Electrostatics Formula Sheet</a>
+                        <a href="#">Chemical Bonding Mind Map</a>
+                        <a href="#">Definite Integration Short Notes</a>
+                    </article>
+
+                    <article class="dashboard-card lectures-card">
+                        <h3>Recorded Lectures</h3>
+                        <button type="button">Play: Current Electricity</button>
+                        <button type="button">Play: Aldehydes & Ketones</button>
+                        <button type="button">Play: Differential Equations</button>
+                    </article>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section class="teacher-portal" aria-hidden="true">
+
+        <div class="teacher-backdrop"></div>
+
+        <div class="portal-shell teacher-shell">
+
+            <aside class="portal-login-panel teacher-login-panel">
+
+                <span class="section-tag">TEACHER PORTAL</span>
+
+                <h2>Faculty Command Center</h2>
+
+                <p>Create tests, upload notes, mark attendance, publish videos and review student performance from one focused dashboard.</p>
+
+                <form class="teacher-login-form">
+                    <label>
+                        Teacher ID
+                        <input type="text" name="teacherId" value="NOVA-FAC-01" required>
+                    </label>
+
+                    <label>
+                        Password
+                        <input type="password" name="password" value="faculty123" required>
+                    </label>
+
+                    <button type="submit" class="primary-btn magnetic">Open Teacher Dashboard</button>
+                </form>
+
+                <button class="teacher-close" type="button" aria-label="Close teacher portal">
+                    &times;
+                </button>
+
+            </aside>
+
+            <div class="portal-dashboard teacher-dashboard">
+
+                <div class="dashboard-topbar">
+                    <div>
+                        <span class="section-tag">FACULTY TOOLS</span>
+                        <h2>Teacher Dashboard</h2>
+                    </div>
+
+                    <div class="student-chip teacher-chip">
+                        <span>TR</span>
+                        <div>
+                            <strong>Science Faculty</strong>
+                            <small>Physics + Chemistry</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-stats">
+                    <div class="dash-stat">
+                        <span>Total Students</span>
+                        <strong>128</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Attendance Today</span>
+                        <strong>91%</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Tests Active</span>
+                        <strong>4</strong>
+                    </div>
+                    <div class="dash-stat">
+                        <span>Pending Reviews</span>
+                        <strong>17</strong>
+                    </div>
+                </div>
+
+                <div class="teacher-tool-grid">
+
+                    <article class="dashboard-card teacher-tool-card">
+                        <h3>Upload Notes</h3>
+                        <label>
+                            Topic
+                            <input type="text" placeholder="Electrostatics formulas">
+                        </label>
+                        <label>
+                            File
+                            <input type="file">
+                        </label>
+                        <button type="button" class="teacher-action">Publish Notes</button>
+                    </article>
+
+                    <article class="dashboard-card teacher-tool-card">
+                        <h3>Create Test</h3>
+                        <label>
+                            Test Name
+                            <input type="text" placeholder="Current Electricity Mock">
+                        </label>
+                        <label>
+                            Duration
+                            <select>
+                                <option>45 minutes</option>
+                                <option>60 minutes</option>
+                                <option>90 minutes</option>
+                            </select>
+                        </label>
+                        <button type="button" class="teacher-action">Create Test</button>
+                    </article>
+
+                    <article class="dashboard-card teacher-tool-card attendance-tool">
+                        <h3>Mark Attendance</h3>
+                        <div class="attendance-row"><span>Rahul Sharma</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                        <div class="attendance-row"><span>Priya Das</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                        <div class="attendance-row"><span>Aman Singh</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                    </article>
+
+                    <article class="dashboard-card teacher-tool-card">
+                        <h3>Upload Videos</h3>
+                        <label>
+                            Lecture Title
+                            <input type="text" placeholder="Ray Optics Part 1">
+                        </label>
+                        <label>
+                            Video Link
+                            <input type="url" placeholder="https://...">
+                        </label>
+                        <button type="button" class="teacher-action">Add Lecture</button>
+                    </article>
+
+                    <article class="dashboard-card teacher-tool-card announcement-tool">
+                        <h3>Send Announcement</h3>
+                        <textarea rows="5" placeholder="Tomorrow's class starts at 5 PM. Bring your PYQ booklet."></textarea>
+                        <button type="button" class="teacher-action">Send to Batch</button>
+                        <p class="teacher-status" aria-live="polite"></p>
+                    </article>
+
+                    <article class="dashboard-card teacher-tool-card performance-tool">
+                        <h3>Student Performance</h3>
+                        <div class="score-line"><span>Class Avg.</span><div><b style="width:84%"></b></div><strong>84</strong></div>
+                        <div class="score-line"><span>Top Score</span><div><b style="width:96%"></b></div><strong>96</strong></div>
+                        <div class="score-line"><span>At Risk</span><div><b style="width:18%"></b></div><strong>7</strong></div>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <aside class="ai-assistant" aria-label="Project NOVA assistant">
+
+        <button class="ai-chat-toggle magnetic" type="button" aria-label="Open chat assistant">
+            <span class="ai-pulse"></span>
+            <span>AI</span>
+        </button>
+
+        <div class="ai-chat-panel" aria-hidden="true">
+
+            <div class="ai-chat-header">
+
+                <div>
+                    <span class="ai-kicker">PROJECT NOVA ASSISTANT</span>
+                    <h3>Ask About Admissions</h3>
+                </div>
+
+                <button class="ai-chat-close" type="button" aria-label="Close chat assistant">
+                    &times;
+                </button>
+
+            </div>
+
+            <div class="ai-chat-messages" role="log" aria-live="polite">
+
+                <div class="chat-message bot">
+                    Hi, I am NOVA Assist. Ask me about courses, batch timings, fees, demo classes, or quick science doubts.
+                </div>
+
+            </div>
+
+            <div class="ai-quick-prompts" aria-label="Suggested questions">
+                <button type="button" data-question="What courses are available?">Courses</button>
+                <button type="button" data-question="What are the batch timings?">Batch timings</button>
+                <button type="button" data-question="Tell me about fees">Fees</button>
+                <button type="button" data-question="How can I book a demo class?">Demo class</button>
+                <button type="button" data-question="Explain Newton's second law">Physics doubt</button>
+            </div>
+
+            <form class="ai-chat-form">
+                <input type="text" name="message" placeholder="Type your question..." autocomplete="off" required>
+                <button type="submit">Send</button>
+            </form>
+
+        </div>
+
+    </aside>
+
+    <!-- JS -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.9.3/tsparticles.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.22/bundled/lenis.min.js"></script>
+    <div class="custom-cursor"></div>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/particles.js"></script>
+    <script src="assets/js/loader-explosion.js"></script>
+    <script src="assets/js/animations.js"></script>
+    <script src="assets/js/nli.js"></script>
+    <script src="assets/js/visualize.js"></script>
+    <script src="assets/js/practice.js"></script>
+    <script src="assets/js/data-loader.js"></script>
+
+</body>
+
+</html>

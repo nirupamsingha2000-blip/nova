@@ -1,0 +1,25 @@
+/* NOVA Mentor panel styles */
+.nli-panel{ position:fixed; right:18px; bottom:18px; width:420px; max-width:92%; background:var(--surface); color:var(--text); border-radius:14px; box-shadow:0 10px 40px rgba(2,6,23,0.6); z-index:10000; transform:translateY(18px) scale(.98); opacity:0; visibility:hidden; transition:opacity .28s ease, transform .28s cubic-bezier(.2,.9,.3,1); }
+.nli-panel.open{ opacity:1; visibility:visible; transform:translateY(0) scale(1); }
+.nli-shell{ padding:18px; }
+.nli-header{ display:flex; align-items:center; justify-content:space-between; margin-bottom:8px; }
+.nli-header h2{ font-family:Space Grotesk, sans-serif; margin:0; font-size:18px; }
+.nli-header-right{ display:flex; align-items:center; gap:8px; }
+.nli-avatar{ width:36px; height:36px; border-radius:10px; overflow:hidden; box-shadow:0 6px 18px rgba(2,6,23,0.45); display:flex; align-items:center; justify-content:center; }
+.nli-avatar svg{ display:block; width:100%; height:100%; }
+.nli-close{ background:none; border:0; color:var(--text); font-size:22px; cursor:pointer; }
+.nli-form label{ display:block; margin-bottom:10px; font-size:13px; }
+.nli-form select, .nli-form textarea{ width:100%; padding:10px 12px; border-radius:8px; border:1px solid var(--card-border); background:var(--field-bg); color:var(--text); }
+.nli-styles{ display:flex; gap:8px; flex-wrap:wrap; margin-top:8px; }
+.nli-style{ background:transparent; border:1px solid rgba(255,255,255,0.04); color:var(--text); padding:6px 10px; border-radius:8px; cursor:pointer; }
+.nli-style.active{ background:linear-gradient(90deg,var(--primary),var(--secondary)); color:white; border-color:transparent; }
+.nli-actions{ display:flex; gap:8px; margin-top:8px; }
+.nli-output{ margin-top:12px; max-height:56vh; overflow:auto; padding-right:6px; }
+.nli-block{ background:var(--card-bg); border:1px solid var(--card-border); padding:12px; border-radius:10px; margin-bottom:10px; }
+.nli-block h3{ margin:0 0 6px 0; font-size:15px; }
+.nli-block p{ margin:0; color:var(--text); font-size:14px; }
+.nli-meta{ font-size:12px; color:var(--muted); display:flex; gap:10px; align-items:center; margin-bottom:8px; }
+.nli-quiz{ margin-top:8px; }
+.nli-quiz .choice{ display:block; padding:8px 10px; border-radius:8px; margin-bottom:6px; border:1px solid rgba(255,255,255,.04); cursor:pointer; }
+.nli-quiz .choice.correct{ background:rgba(34,197,94,.08); border-color:rgba(34,197,94,.14); }
+.nli-quiz .choice.wrong{ background:rgba(239,68,68,.06); border-color:rgba(239,68,68,.12); }

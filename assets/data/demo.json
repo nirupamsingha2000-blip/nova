@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "tag": "🚀 Future of Learning",
+    "title": "THE FUTURE OF\nSCIENCE EDUCATION",
+    "subtitle": "Learn Physics, Chemistry and Mathematics through visual learning, conceptual understanding and real-world applications.",
+    "ctaPrimary": "Book Free Demo",
+    "ctaSecondary": "Explore Courses"
+  },
+  "stats": [
+    { "label": "Success Rate", "value": "92%" },
+    { "label": "Students", "value": "500+" },
+    { "label": "Courses", "value": "12" }
+  ],
+  "courses": [
+    { "id": "c11", "title": "Class 11 - Physics", "short": "Mechanics, Waves, Thermodynamics" },
+    { "id": "c12", "title": "Class 12 - Physics", "short": "Electrodynamics, Optics" },
+    { "id": "jee", "title": "JEE Advanced Prep", "short": "Problem solving + PYQ" }
+  ],
+  "nliSamples": [
+    "Explain Mirror Formula",
+    "What is Electric Field?",
+    "Derive equations of motion"
+  ]
+}

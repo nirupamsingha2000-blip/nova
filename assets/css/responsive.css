@@ -1,0 +1,138 @@
+/* Responsive breakpoints for Project NOVA */
+
+@media (max-width: 1024px) {
+
+	.hero{ grid-template-columns: 1fr; padding:100px 6%; }
+
+	.hero-visual{ margin-top:40px; }
+
+	.about{ grid-template-columns: 1fr; padding:100px 6%; }
+
+	.course-grid{ grid-template-columns: repeat(2,1fr); gap:24px; }
+
+	.contact-panel{ grid-template-columns:1fr; }
+
+	.footer-container{ grid-template-columns:1fr 1fr; }
+
+	.footer-newsletter{ grid-column:1 / -1; }
+
+	.portal-shell{ grid-template-columns:1fr; max-height:92vh; }
+
+	.portal-login-panel{ border-right:0; border-bottom:1px solid var(--card-border); }
+
+	.dashboard-stats{ grid-template-columns:repeat(2, 1fr); }
+
+	.teacher-tool-grid{ grid-template-columns:1fr 1fr; }
+
+	.teacher-tool-card,
+	.attendance-tool,
+	.announcement-tool,
+	.performance-tool{ grid-column:auto; }
+
+}
+
+@media (max-width: 768px) {
+
+	.hero h1{ font-size:40px; }
+
+	.hero{ padding:80px 5%; gap:30px; }
+
+	.about{ padding:80px 5%; }
+
+	.course-grid{ grid-template-columns: 1fr; }
+
+	.results-grid{ grid-template-columns: repeat(2,1fr); }
+
+	.navbar{ padding:16px 20px; gap:18px; }
+
+	.nav-links{ display:none; }
+
+	.contact-info{ grid-template-columns:1fr; }
+
+	.cta-buttons{ flex-direction:column; align-items:center; }
+
+	.contact-form{ padding:28px; }
+
+	.map-card,
+	.contact-form,
+	.map-card iframe{ min-height:420px; }
+
+	.footer-container{ grid-template-columns:1fr; }
+
+	.footer-newsletter{ grid-column:auto; }
+
+	.back-to-top{ right:92px; bottom:28px; }
+
+	.dashboard-topbar{ grid-template-columns:1fr; }
+
+	.dashboard-grid{ grid-template-columns:1fr; }
+
+	.upcoming-card,
+	.homework-card,
+	.chart-card,
+	.scores-card,
+	.notes-card,
+	.lectures-card{ grid-column:auto; }
+
+	.student-portal{ padding:14px; }
+
+	.portal-dashboard{ padding:22px; }
+
+	.teacher-tool-grid{ grid-template-columns:1fr; }
+
+	.nav-actions{ flex-wrap:wrap; justify-content:flex-end; }
+
+}
+
+@media (max-width: 480px) {
+
+	.hero h1{ font-size:32px; }
+
+	.hero{ padding:60px 4%; }
+
+	.section-heading h2{ font-size:28px; }
+
+	.results-grid{ grid-template-columns: 1fr; }
+
+	.nav-actions{ gap:10px; }
+
+	.theme-toggle{ width:42px; height:42px; }
+
+	.contact-form{ padding:22px; }
+
+	.form-heading h3{ font-size:26px; }
+
+	.ai-assistant{ right:16px; bottom:16px; }
+
+	.ai-chat-toggle{ width:58px; height:58px; }
+
+	.ai-chat-panel{ bottom:74px; max-height:calc(100vh - 110px); }
+
+	.ai-chat-header{ padding:20px; }
+
+	.ai-chat-messages{ max-height:240px; }
+
+	.back-to-top{ right:84px; bottom:18px; width:52px; height:52px; font-size:22px; }
+
+	.newsletter-form{ border-radius:18px; align-items:stretch; }
+
+	.portal-login-btn{ padding:12px 14px; font-size:13px; }
+
+	.teacher-login-btn{ padding:12px 14px; font-size:13px; }
+
+	.portal-login-panel{ padding:28px; }
+
+	.portal-login-panel h2,
+	.dashboard-topbar h2{ font-size:30px; }
+
+	.dashboard-stats{ grid-template-columns:1fr; }
+
+	.dashboard-card li,
+	.task-row{ grid-template-columns:1fr; }
+
+	.score-line{ grid-template-columns:1fr; }
+
+	.attendance-row{ grid-template-columns:1fr; }
+
+}
+
