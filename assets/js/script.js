@@ -16,13 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const teacherLoginForm = document.querySelector('.teacher-login-form');
     const teacherActions = document.querySelectorAll('.teacher-action');
     const attendanceButtons = document.querySelectorAll('.attendance-row button');
-    const assistant = document.querySelector('.ai-assistant');
-    const assistantToggle = document.querySelector('.ai-chat-toggle');
-    const assistantClose = document.querySelector('.ai-chat-close');
-    const assistantMessages = document.querySelector('.ai-chat-messages');
-    const assistantForm = document.querySelector('.ai-chat-form');
-    const assistantInput = assistantForm ? assistantForm.querySelector('input') : null;
-    const quickPrompts = document.querySelectorAll('.ai-quick-prompts button');
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
@@ -368,98 +361,11 @@ document.addEventListener('DOMContentLoaded', () => {
         button.dataset.originalText = button.textContent;
     });
 
-    const assistantAnswers = [
-        {
-            keys: ['batch', 'timing', 'time', 'schedule'],
-            answer: 'Batch timings are flexible for Class 11, Class 12, and Foundation students. Share your class and preferred time in the demo form, and the team will suggest the best batch.'
-        },
-        {
-            keys: ['fee', 'fees', 'price', 'cost'],
-            answer: 'Fees depend on the selected program and batch format. For the most accurate details, book a free demo or call the institute directly from the contact section.'
-        },
-        {
-            keys: ['course', 'courses', 'program', 'class 11', 'class 12', 'foundation'],
-            answer: 'Project NOVA currently highlights Class 11 Science, Class 12 Boards, and Foundation programs with Physics, Chemistry, Mathematics, tests, notes, and doubt support.'
-        },
-        {
-            keys: ['demo', 'trial', 'book', 'admission', 'join'],
-            answer: 'You can book a free demo from the contact section. I can take you there now: click the Book Free Demo button or scroll to the form below.'
-        },
-        {
-            keys: ['physics', 'newton', 'force', 'law'],
-            answer: "Quick physics help: Newton's second law says force equals mass times acceleration, F = ma. Bigger force means bigger acceleration, while bigger mass needs more force for the same acceleration."
-        },
-        {
-            keys: ['chemistry', 'molecule', 'atom'],
-            answer: 'Chemistry tip: atoms combine by sharing, gaining, or losing electrons. That is why bonding and valency are the foundation for understanding molecules.'
-        },
-        {
-            keys: ['math', 'mathematics', 'calculus', 'algebra'],
-            answer: 'Math tip: focus on concepts first, then problem patterns. For boards and entrance exams, strong algebra and functions make higher topics much easier.'
-        }
-    ];
-
-    const addAssistantMessage = (text, sender = 'bot') => {
-        if (!assistantMessages) return;
-        const message = document.createElement('div');
-        message.className = `chat-message ${sender}`;
-        message.textContent = text;
-        assistantMessages.appendChild(message);
-        assistantMessages.scrollTop = assistantMessages.scrollHeight;
-    };
-
-    const getAssistantReply = (question) => {
-        const normalized = question.toLowerCase();
-        const match = assistantAnswers.find(item => item.keys.some(key => normalized.includes(key)));
-        if (match) return match.answer;
-        return 'I can help with courses, batches, fees, demo classes, and quick science doubts. For a personal answer, send your details through the demo form.';
-    };
-
-    const askAssistant = (question) => {
-        const cleanQuestion = question.trim();
-        if (!cleanQuestion) return;
-        addAssistantMessage(cleanQuestion, 'user');
-        if (assistantInput) assistantInput.value = '';
-        setTimeout(() => {
-            addAssistantMessage(getAssistantReply(cleanQuestion), 'bot');
-        }, 420);
-    };
-
-    if (assistant && assistantToggle) {
-        assistantToggle.addEventListener('click', () => {
-            const isOpen = assistant.classList.toggle('open');
-            const panel = assistant.querySelector('.ai-chat-panel');
-            if (panel) panel.setAttribute('aria-hidden', String(!isOpen));
-            if (isOpen && assistantInput) {
-                setTimeout(() => assistantInput.focus(), 120);
-            }
-        });
-    }
-
-    if (assistant && assistantClose) {
-        assistantClose.addEventListener('click', () => {
-            assistant.classList.remove('open');
-            const panel = assistant.querySelector('.ai-chat-panel');
-            if (panel) panel.setAttribute('aria-hidden', 'true');
-        });
-    }
-
-    if (assistantForm) {
-        assistantForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            if (assistantInput) askAssistant(assistantInput.value);
-        });
-    }
-
-    quickPrompts.forEach(prompt => {
-        prompt.addEventListener('click', () => {
-            askAssistant(prompt.dataset.question || prompt.textContent);
-        });
-    });
+    // AI assistant behavior removed from landing page
 
     const loader = document.getElementById('page-loader');
     const progressFill = document.querySelector('.progress-fill');
-    const progressText = document.querySelector('.progress-text');
+    const progressText = document.querySelector('.loader-percent') || document.querySelector('.progress-text');
     let progress = 0;
 
     const updateProgressUI = (value) => {
@@ -562,4 +468,85 @@ document.addEventListener('DOMContentLoaded', () => {
             retinaDetect: true
         });
     }
+
+        /* -----------------------
+           UI polish scripts
+           - navbar shrink on scroll
+           - animated counters
+        ------------------------- */
+        const navbar = document.querySelector('.navbar');
+        const counters = document.querySelectorAll('.counter');
+        let countersStarted = false;
+
+        const handleNavShrink = () => {
+            if (!navbar) return;
+            if (window.scrollY > 72) navbar.classList.add('shrink');
+            else navbar.classList.remove('shrink');
+        };
+
+        const runCounters = () => {
+            if (countersStarted) return;
+            counters.forEach(el => {
+                const target = Number(el.dataset.target) || 0;
+                const duration = 1200;
+                const start = performance.now();
+                const step = (now) => {
+                    const t = Math.min(1, (now - start) / duration);
+                    el.textContent = Math.floor(t * target);
+                    if (t < 1) requestAnimationFrame(step);
+                    else el.textContent = target + (el.dataset.suffix || '');
+                };
+                requestAnimationFrame(step);
+            });
+            countersStarted = true;
+        };
+
+        handleNavShrink();
+        window.addEventListener('scroll', () => {
+            handleNavShrink();
+            // start counters when trust strip is in viewport
+            const trust = document.querySelector('.trust-strip');
+            if (trust && !countersStarted) {
+                const r = trust.getBoundingClientRect();
+                if (r.top < window.innerHeight && r.bottom > 0) runCounters();
+            }
+        });
+
+        /* Reveal-on-scroll for course cards and testimonials */
+        const revealEls = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    revealObserver.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.12 });
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        /* CTA entrance animation */
+        const cta = document.querySelector('.cta-section');
+        if (cta) {
+            const ctaObs = new IntersectionObserver(entries => {
+                entries.forEach(e => {
+                    if (e.isIntersecting) {
+                        cta.classList.add('visible');
+                        ctaObs.unobserve(cta);
+                    }
+                });
+            }, { threshold: 0.16 });
+            ctaObs.observe(cta);
+        }
+
+        // Simple newsletter form feedback
+        const newsletterForm = document.querySelector('.newsletter-form');
+        const newsletterStatus = document.querySelector('.newsletter-status');
+        if (newsletterForm && newsletterStatus) {
+            newsletterForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                newsletterStatus.textContent = 'Thanks — check your inbox!';
+                newsletterForm.reset();
+                setTimeout(() => newsletterStatus.textContent = '', 4200);
+            });
+        }
 });

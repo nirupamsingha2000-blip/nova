@@ -1,4 +1,0 @@
-.visualize-root{ background:linear-gradient(180deg,#071025 0%, #041021 100%); padding:12px; border-radius:10px; color:var(--text); box-shadow:0 6px 18px rgba(2,6,23,.5); }
-.visualize-controls{ display:flex; gap:8px; align-items:center; margin-top:8px; }
-.visualize-controls input[type=range]{ width:140px; }
-.visualize-launch{ background:linear-gradient(90deg,var(--primary),var(--secondary)); color:white; border:none; padding:8px 12px; border-radius:8px; cursor:pointer; }

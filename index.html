@@ -26,8 +26,8 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/animations.css">
-    <link rel="stylesheet" href="assets/css/nli.css">
-    <link rel="stylesheet" href="assets/css/visualize.css">
+    <!-- visualize.css removed -->
+    <!-- Mentor styles removed for landing page cleanup -->
     <link rel="stylesheet" href="assets/css/responsive.css">
 
 </head>
@@ -54,7 +54,7 @@
                 <li>Loading Physics...</li>
                 <li>Loading Chemistry...</li>
                 <li>Loading Mathematics...</li>
-                <li>Preparing AI Assistant...</li>
+                <!-- AI assistant loader step removed -->
             </ul>
 
             <div class="loader-identity" id="loader-identity">Science Engine Loading... □□□□□□□□□</div>
@@ -75,7 +75,7 @@
             <div class="logo">
 
                 PROJECT <span>NOVA</span>
-                <button id="nli-open-btn" class="nli-open-btn magnetic" aria-label="Open NOVA Mentor">NOVA Mentor</button>
+                <!-- NOVA Mentor launcher removed -->
 
             </div>
 
@@ -116,67 +116,6 @@
 
     <main>
 
-        <!-- NOVA Mentor Panel -->
-        <aside id="nli-panel" class="nli-panel" aria-hidden="true">
-            <div class="nli-shell">
-                <header class="nli-header">
-                    <h2>NOVA Mentor</h2>
-                        <div class="nli-header-right">
-                            <div class="nli-avatar" aria-hidden="true" title="NOVA Mentor">
-                                <!-- simple SVG avatar -->
-                                <svg width="36" height="36" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <defs>
-                                        <linearGradient id="g1" x1="0" x2="1">
-                                            <stop offset="0" stop-color="#4F46E5"/>
-                                            <stop offset="1" stop-color="#06B6D4"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <rect x="0" y="0" width="48" height="48" rx="10" fill="url(#g1)" />
-                                    <circle cx="24" cy="18" r="6" fill="white" opacity="0.95" />
-                                    <path d="M12 36c2.5-6 11-6 12-6s9.5 0 12 6" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.95"/>
-                                </svg>
-                            </div>
-                            <button id="nli-close" class="nli-close" aria-label="Close mentor">×</button>
-                        </div>
-                </header>
-
-                <form id="nli-form" class="nli-form">
-                    <label>
-                        Your level
-                        <select name="level" id="nli-level">
-                            <option value="Class 11">Class 11</option>
-                            <option value="Class 12">Class 12</option>
-                            <option value="JEE">JEE</option>
-                            <option value="NEET">NEET</option>
-                            <option value="CUET">CUET</option>
-                        </select>
-                    </label>
-
-                    <label>
-                        Style
-                        <div class="nli-styles">
-                            <button type="button" class="nli-style" data-style="Visual">Visual</button>
-                            <button type="button" class="nli-style" data-style="Mathematical">Mathematical</button>
-                            <button type="button" class="nli-style" data-style="Conceptual">Conceptual</button>
-                            <button type="button" class="nli-style" data-style="PYQ">PYQ-Oriented</button>
-                            <button type="button" class="nli-style" data-style="Revision">Revision</button>
-                        </div>
-                    </label>
-
-                    <label>
-                        Ask NOVA Mentor
-                        <textarea id="nli-query" rows="3" placeholder="e.g. Explain Mirror Formula" required></textarea>
-                    </label>
-
-                    <div class="nli-actions">
-                        <button type="submit" class="primary-btn">Explain</button>
-                        <button type="button" id="nli-sample" class="secondary-btn">Try sample: Electric Field</button>
-                    </div>
-                </form>
-
-                <div id="nli-output" class="nli-output" aria-live="polite"></div>
-            </div>
-        </aside>
 
         <section class="hero" id="home">
 
@@ -189,7 +128,7 @@
                 <h1>
 
                     THE FUTURE OF
-                    <span>SCIENCE EDUCATION</span>
+                    <span class="gradient-text">SCIENCE EDUCATION</span>
 
                 </h1>
 
@@ -243,16 +182,90 @@
 
         </section>
 
-        <!-- Visualize and Practice sections (prototypes) -->
-        <section id="visualize-root" class="visualize-root" style="margin:18px 12px; display:block;">
-            <h3 style="margin:0 0 8px 0;">Visualize — Interactive Simulation</h3>
-            <!-- visualize.js mounts a canvas here -->
+        <!-- =========================
+        TESTIMONIALS
+========================== -->
+
+        <section class="testimonials" id="testimonials">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                <span class="section-tag">STUDENT STORIES</span>
+
+                <h2>WHAT STUDENTS SAY</h2>
+
+                <p>Real improvement, better understanding and top results.</p>
+
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card reveal animate fade-up" data-animate="fade-up" data-delay="0.14">
+
+                    <div class="testimonial-body">
+
+                        <div class="avatar"><div class="avatar-initial">A</div></div>
+
+                        <div class="testimonial-text">
+
+                            <p>"Project NOVA helped me get my confidence back. My board score improved by 18%."</p>
+
+                            <strong>— Ananya, Class 12</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="testimonial-card reveal animate fade-up" data-animate="fade-up" data-delay="0.2">
+
+                    <div class="testimonial-body">
+
+                        <div class="avatar"><div class="avatar-initial">R</div></div>
+
+                        <div class="testimonial-text">
+
+                            <p>"Concept-first lessons made JEE problems intuitive. Highly recommend."</p>
+
+                            <strong>— Rohan, JEE Aspirant</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <section id="practice-root" class="visualize-root" style="margin:18px 12px; display:block;">
-            <h3 style="margin:0 0 8px 0;">Practice — Mini Quiz</h3>
-            <div id="practice-mount"></div>
+        <!-- Trust strip: small glass cards with counters -->
+        <section class="trust-strip" aria-hidden="false" style="margin:18px 12px;">
+            <div class="trust-inner">
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="500">0</div>
+                    <div class="trust-label">Students</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="95">0</div>
+                    <div class="trust-label">Board Success %</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="7">0</div>
+                    <div class="trust-label">Years</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-label small">Accreditations</div>
+                    <div class="trust-logos">MBOSE · CBSE · NEET · JEE · CUET</div>
+                </div>
+            </div>
         </section>
+
+        <!-- Visualize, Practice, Solve, Revise, Predict modules -->
+        <!-- Visualize interactive session removed per request -->
+
+        <!-- Practice, Solve, Revise, and Predict modules removed per request -->
 
         <!-- =========================
         ABOUT
@@ -372,11 +385,11 @@
 
             </div>
 
-            <div class="course-grid">
+            <div class="courses-grid course-grid">
 
                 <!-- Card 1 -->
 
-                <div class="course-card animate fade-up" data-animate="fade-up" data-delay="0.12">
+                <div class="course-card reveal animate fade-up" data-animate="fade-up" data-delay="0.12">
 
                     <div class="course-icon">🧪</div>
 
@@ -402,13 +415,9 @@
 
                 <!-- Card 2 -->
 
-                <div class="course-card featured animate fade-up" data-animate="fade-up" data-delay="0.2">
+                <div class="course-card featured reveal animate fade-up" data-animate="fade-up" data-delay="0.2">
 
-                    <span class="badge">
-
-                        MOST POPULAR
-
-                    </span>
+                    <div class="course-badge">MOST POPULAR</div>
 
                     <div class="course-icon">🚀</div>
 
@@ -435,7 +444,7 @@
 
                 <!-- Card 3 -->
 
-                <div class="course-card animate fade-up" data-animate="fade-up" data-delay="0.28">
+                <div class="course-card reveal animate fade-up" data-animate="fade-up" data-delay="0.28">
 
                     <div class="course-icon">🎯</div>
 
@@ -931,6 +940,23 @@
 
         </section>
 
+        <!-- =========================
+        CALL TO ACTION
+========================== -->
+
+        <section class="cta-section" id="cta">
+            <div class="cta-inner">
+                <div class="cta-left">
+                    <h2>Ready to transform learning?</h2>
+                    <p class="subhead">Book a free demo and see how Project NOVA builds understanding, not memorization. Small batches, expert mentors, visual-first lessons.</p>
+                </div>
+                <div class="cta-right">
+                    <a href="#contact" class="btn-primary gradient-small magnetic" id="cta-demo">Book Demo</a>
+                    <a href="#courses" class="btn-secondary magnetic" id="cta-explore">Explore Programs</a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer class="footer">
@@ -1294,55 +1320,10 @@
 
     </section>
 
-    <aside class="ai-assistant" aria-label="Project NOVA assistant">
-
-        <button class="ai-chat-toggle magnetic" type="button" aria-label="Open chat assistant">
-            <span class="ai-pulse"></span>
-            <span>AI</span>
-        </button>
-
-        <div class="ai-chat-panel" aria-hidden="true">
-
-            <div class="ai-chat-header">
-
-                <div>
-                    <span class="ai-kicker">PROJECT NOVA ASSISTANT</span>
-                    <h3>Ask About Admissions</h3>
-                </div>
-
-                <button class="ai-chat-close" type="button" aria-label="Close chat assistant">
-                    &times;
-                </button>
-
-            </div>
-
-            <div class="ai-chat-messages" role="log" aria-live="polite">
-
-                <div class="chat-message bot">
-                    Hi, I am NOVA Assist. Ask me about courses, batch timings, fees, demo classes, or quick science doubts.
-                </div>
-
-            </div>
-
-            <div class="ai-quick-prompts" aria-label="Suggested questions">
-                <button type="button" data-question="What courses are available?">Courses</button>
-                <button type="button" data-question="What are the batch timings?">Batch timings</button>
-                <button type="button" data-question="Tell me about fees">Fees</button>
-                <button type="button" data-question="How can I book a demo class?">Demo class</button>
-                <button type="button" data-question="Explain Newton's second law">Physics doubt</button>
-            </div>
-
-            <form class="ai-chat-form">
-                <input type="text" name="message" placeholder="Type your question..." autocomplete="off" required>
-                <button type="submit">Send</button>
-            </form>
-
-        </div>
-
-    </aside>
+    <!-- AI assistant removed from DOM -->
 
     <!-- JS -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.9.3/tsparticles.bundle.min.js"></script>
+    <!-- tsparticles CDN removed due to MIME/loader issues -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.160.0/three.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.22/bundled/lenis.min.js"></script>
@@ -1351,9 +1332,9 @@
     <script src="assets/js/particles.js"></script>
     <script src="assets/js/loader-explosion.js"></script>
     <script src="assets/js/animations.js"></script>
-    <script src="assets/js/nli.js"></script>
-    <script src="assets/js/visualize.js"></script>
-    <script src="assets/js/practice.js"></script>
+    <!-- Mentor script removed from landing page -->
+    <!-- Visualize script removed -->
+    <!-- Practice/Problem/Revise modules removed -->
     <script src="assets/js/data-loader.js"></script>
 
 </body>

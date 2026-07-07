@@ -132,11 +132,29 @@ app.post('/api/nli/explain', async (req, res) => {
 
 // Mock solver endpoint: accepts image/text and returns a mocked OCR + solution
 app.post('/api/solver/solve', express.json(), async (req, res) => {
-  const { text } = req.body || {};
-  // simple mock: echo back with a pseudo-solution
-  const problem = text || 'Uploaded image (mock)';
-  const solution = `Solution (mock): For the problem "${problem}", identify givens, apply formulas, and solve step-by-step.`;
-  res.json({ problem, solution });
+  const { text, image } = req.body || {};
+  const problemText = text?.trim() || (image ? 'Problem described from uploaded image' : 'No problem text provided');
+  const solution = problemText
+    ? `Mock solution: Review the provided values, identify the concepts involved, and write a step-by-step answer based on the topic.`
+    : 'Mock solution: No problem details were provided. Please enter the question text or upload a clear image of the problem.';
+  const reasoning = image
+    ? 'This assistant detected an image upload. If possible, also include the problem statement in text for the most accurate walkthrough.'
+    : 'Break the question into givens, apply the core formula, and then check units and sign conventions.';
+  const advice = 'Focus on one step at a time and re-read the question to confirm which quantity is being asked.';
+  res.json({ problem: problemText, solution, reasoning, advice });
+});
+
+app.post('/api/learner/readiness', express.json(), async (req, res) => {
+  const { quizzesTaken = 0, correct = 0, recentHours = 0 } = req.body || {};
+  const accuracy = quizzesTaken > 0 ? Math.min(1, correct / quizzesTaken) : 0.6;
+  const timeFactor = Math.min(1, recentHours / 5);
+  const score = Math.max(45, Math.min(100, Math.round(55 + accuracy * 25 + timeFactor * 20)));
+  const recommendation = score >= 80
+    ? 'You are on a strong path. Keep reviewing weak areas and try one more mixed practice set.'
+    : score >= 65
+      ? 'Good progress. Focus on conceptual clarity and solve 2-3 more PYQs this week.'
+      : 'Spend time revising fundamentals, ask NOVA Mentor for concept explanations, and practice more quizzes.';
+  res.json({ score, accuracy, recentHours, quizzesTaken, recommendation, message: `Your readiness is currently ${score}%.` });
 });
 
 function buildPrompt({ topic='Topic', level='General', style='Conceptual' }){

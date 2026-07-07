@@ -16,14 +16,11 @@
         const secondaryBtn = document.querySelector('.hero-buttons .btn-secondary');
         if(secondaryBtn && data.hero?.ctaSecondary) secondaryBtn.textContent = data.hero.ctaSecondary;
 
-        // NLI sample populate
+        // NLI sample label
         const sampleBtn = document.getElementById('nli-sample');
-        if(sampleBtn && Array.isArray(data.nliSamples)){
-            sampleBtn.addEventListener('click', ()=>{
-                const sample = data.nliSamples[0];
-                document.getElementById('nli-query').value = sample;
-                document.getElementById('nli-form').dispatchEvent(new Event('submit'));
-            });
+        if (sampleBtn && Array.isArray(data.nliSamples) && data.nliSamples.length) {
+            sampleBtn.textContent = `Try sample: ${data.nliSamples[0]}`;
+            sampleBtn.dataset.example = data.nliSamples[0];
         }
 
         // Basic stats (if present)
