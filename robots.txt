@@ -3,4 +3,4 @@ Disallow: /student-portal.html
 Disallow: /teacher-portal.html
 Allow: /
 
-Sitemap: https://REPLACE-ONCE-DOMAIN-KNOWN/sitemap.xml
+Sitemap: https://nirupamsingha2000-blip.github.io/nova/sitemap.xml

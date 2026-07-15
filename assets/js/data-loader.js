@@ -1,7 +1,7 @@
 // Load demo data and populate page elements
 (async function(){
     try{
-        const resp = await fetch('/assets/data/demo.json');
+        const resp = await fetch('assets/data/demo.json');
         if(!resp.ok) return;
         const data = await resp.json();
         // Hero
