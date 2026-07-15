@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /student-portal.html
+Disallow: /teacher-portal.html
+Allow: /
+
+Sitemap: https://REPLACE-ONCE-DOMAIN-KNOWN/sitemap.xml

@@ -1,0 +1,117 @@
+        <section class="student-portal standalone open">
+
+            <div class="portal-shell">
+
+                <aside class="portal-login-panel">
+
+                    <span class="section-tag">STUDENT PORTAL</span>
+
+                    <h2>Welcome Back</h2>
+
+                    <p>Login preview for students to track classes, homework, attendance, scores, notes and lectures.</p>
+
+                    <form class="portal-login-form">
+                        <label>
+                            Student ID
+                            <input type="text" name="studentId" value="NOVA-1207" required>
+                        </label>
+
+                        <label>
+                            Password
+                            <input type="password" name="password" value="demo123" required>
+                        </label>
+
+                        <button type="submit" class="primary-btn magnetic">Open Dashboard</button>
+                    </form>
+
+                    <a class="portal-close" href="/index.html" aria-label="Back to home">
+                        &times;
+                    </a>
+
+                </aside>
+
+                <div class="portal-dashboard">
+
+                    <div class="dashboard-topbar">
+                        <div>
+                            <span class="section-tag">CLASS 12 SCIENCE</span>
+                            <h2>Student Dashboard</h2>
+                        </div>
+
+                        <div class="student-chip">
+                            <span>NS</span>
+                            <div>
+                                <strong>NOVA Student</strong>
+                                <small>Board + CUET Track</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <div class="dash-stat">
+                            <span>Attendance</span>
+                            <strong>92%</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Homework</span>
+                            <strong>8/10</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Avg. Score</span>
+                            <strong>86%</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Notes</span>
+                            <strong>24</strong>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-grid">
+                        <article class="dashboard-card upcoming-card">
+                            <h3>Upcoming Classes</h3>
+                            <ul>
+                                <li><span>Today</span> Electrostatics Revision <strong>5:00 PM</strong></li>
+                                <li><span>Wed</span> Organic Chemistry Practice <strong>6:30 PM</strong></li>
+                                <li><span>Fri</span> Calculus Problem Lab <strong>5:30 PM</strong></li>
+                            </ul>
+                        </article>
+
+                        <article class="dashboard-card homework-card">
+                            <h3>Homework</h3>
+                            <div class="task-row"><span></span> Physics numericals set 04 <strong>Due Tomorrow</strong></div>
+                            <div class="task-row done"><span></span> Chemistry PYQ worksheet <strong>Done</strong></div>
+                            <div class="task-row"><span></span> Math integration drill <strong>2 Days</strong></div>
+                        </article>
+
+                        <article class="dashboard-card chart-card">
+                            <h3>Progress Chart</h3>
+                            <canvas id="progressChart" width="520" height="220"></canvas>
+                        </article>
+
+                        <article class="dashboard-card scores-card">
+                            <h3>Test Scores</h3>
+                            <div class="score-line"><span>Physics</span><div><b style="width:88%"></b></div><strong>88</strong></div>
+                            <div class="score-line"><span>Chemistry</span><div><b style="width:82%"></b></div><strong>82</strong></div>
+                            <div class="score-line"><span>Math</span><div><b style="width:91%"></b></div><strong>91</strong></div>
+                        </article>
+
+                        <article class="dashboard-card notes-card">
+                            <h3>Notes</h3>
+                            <a href="#">Electrostatics Formula Sheet</a>
+                            <a href="#">Chemical Bonding Mind Map</a>
+                            <a href="#">Definite Integration Short Notes</a>
+                        </article>
+
+                        <article class="dashboard-card lectures-card">
+                            <h3>Recorded Lectures</h3>
+                            <button type="button">Play: Current Electricity</button>
+                            <button type="button">Play: Aldehydes & Ketones</button>
+                            <button type="button">Play: Differential Equations</button>
+                        </article>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>

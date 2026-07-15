@@ -1,0 +1,245 @@
+        <section class="hero" id="home">
+
+            <div class="hero-content animate fade-up" data-animate="fade-up" data-delay="0">
+
+                <span class="hero-tag">
+                    🚀 Future of Learning
+                </span>
+
+                <h1>
+
+                    THE FUTURE OF
+                    <span class="gradient-text">SCIENCE EDUCATION</span>
+
+                </h1>
+
+                <p>
+
+                    Learn Physics, Chemistry and Mathematics through
+                    visual learning, conceptual understanding and
+                    real-world applications.
+
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="/contact.html#contact-form" class="btn-primary magnetic">
+
+                        Book Free Demo
+
+                    </a>
+
+                    <a href="/courses.html" class="btn-secondary magnetic">
+
+                        Explore Courses
+
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="hero-visual animate slide-up" data-animate="slide-up" data-delay="0.15">
+
+                <div id="tsparticles"></div>
+
+                <div id="nova-3d-scene" class="nova-3d-scene" aria-hidden="true"></div>
+
+                <div class="orb">
+
+                    <div class="orbit orbit1"><span class="electron"></span></div>
+
+                    <div class="orbit orbit2"><span class="electron"></span></div>
+
+                    <div class="orbit orbit3"><span class="electron"></span></div>
+
+                    <div class="nucleus"></div>
+
+                    <div class="energy"></div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        TESTIMONIALS
+========================== -->
+
+        <section class="testimonials" id="testimonials">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.12">
+
+                <span class="section-tag">STUDENT STORIES</span>
+
+                <h2>WHAT STUDENTS SAY</h2>
+
+                <p>Real improvement, better understanding and top results.</p>
+
+            </div>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card reveal animate fade-up" data-animate="fade-up" data-delay="0.14">
+
+                    <div class="testimonial-body">
+
+                        <div class="avatar"><div class="avatar-initial">A</div></div>
+
+                        <div class="testimonial-text">
+
+                            <p>"Project NOVA helped me get my confidence back. My board score improved by 18%."</p>
+
+                            <strong>— Ananya, Class 12</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="testimonial-card reveal animate fade-up" data-animate="fade-up" data-delay="0.2">
+
+                    <div class="testimonial-body">
+
+                        <div class="avatar"><div class="avatar-initial">R</div></div>
+
+                        <div class="testimonial-text">
+
+                            <p>"Concept-first lessons made JEE problems intuitive. Highly recommend."</p>
+
+                            <strong>— Rohan, JEE Aspirant</strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- Trust strip: small glass cards with counters -->
+        <section class="trust-strip" aria-hidden="false" style="margin:18px 12px;">
+            <div class="trust-inner">
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="500">0</div>
+                    <div class="trust-label">Students</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="95">0</div>
+                    <div class="trust-label">Board Success %</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-value counter" data-target="7">0</div>
+                    <div class="trust-label">Years</div>
+                </div>
+                <div class="trust-card">
+                    <div class="trust-label small">Accreditations</div>
+                    <div class="trust-logos">MBOSE · CBSE · NEET · JEE · CUET</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =========================
+        CONCEPT LAB (live physics simulator)
+========================== -->
+
+        <section class="concept-lab" id="concept-lab">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">SEE IT IN ACTION</span>
+
+                <h2>PHYSICS YOU CAN ACTUALLY SEE</h2>
+
+                <p>This is what "concept-first" means in practice — drag the sliders and watch real projectile motion respond instantly, on Earth or beyond it.</p>
+
+            </div>
+
+            <div class="concept-lab-grid">
+
+                <div class="concept-stage glass-card animate slide-right" data-animate="slide-right" data-delay="0.15">
+                    <canvas id="concept-canvas" width="640" height="420" role="img" aria-label="Projectile motion trajectory diagram"></canvas>
+                    <button type="button" class="primary-btn magnetic concept-launch">Launch Projectile</button>
+                </div>
+
+                <div class="concept-controls glass-card animate slide-left" data-animate="slide-left" data-delay="0.2">
+
+                    <div class="concept-field">
+                        <label for="concept-angle">Launch Angle <span class="concept-value" id="concept-angle-value">45°</span></label>
+                        <input type="range" id="concept-angle" min="5" max="85" value="45" step="1">
+                    </div>
+
+                    <div class="concept-field">
+                        <label for="concept-velocity">Launch Speed <span class="concept-value" id="concept-velocity-value">30 m/s</span></label>
+                        <input type="range" id="concept-velocity" min="10" max="60" value="30" step="1">
+                    </div>
+
+                    <div class="concept-field">
+                        <span class="concept-field-label">Gravity</span>
+                        <div class="gravity-chips">
+                            <button type="button" class="gravity-chip active" data-g="9.8">Earth</button>
+                            <button type="button" class="gravity-chip" data-g="1.62">Moon</button>
+                            <button type="button" class="gravity-chip" data-g="3.71">Mars</button>
+                        </div>
+                    </div>
+
+                    <div class="concept-readouts" aria-live="polite">
+                        <div class="concept-readout">
+                            <strong id="concept-range">0 m</strong>
+                            <span>Range</span>
+                        </div>
+                        <div class="concept-readout">
+                            <strong id="concept-height">0 m</strong>
+                            <span>Max Height</span>
+                        </div>
+                        <div class="concept-readout">
+                            <strong id="concept-time">0 s</strong>
+                            <span>Time of Flight</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
+        COURSES TEASER
+========================== -->
+
+        <section class="courses" id="courses">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">
+                    OUR PROGRAMS
+                </span>
+
+                <h2>
+                    CHOOSE YOUR LEARNING PATH
+                </h2>
+
+                <p>
+
+                    Structured courses designed for school excellence,
+                    board examinations and competitive success.
+
+                </p>
+
+            </div>
+
+<!--#include partial="course-cards"-->
+
+            <div class="courses-see-all">
+                <a href="/courses.html" class="btn-secondary magnetic">See All Courses →</a>
+            </div>
+
+
+        </section>
+
+<!--#include partial="cta-section"-->

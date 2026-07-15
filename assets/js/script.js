@@ -7,17 +7,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const contactForm = document.querySelector('#contact-form');
     const newsletterForm = document.querySelector('.newsletter-form');
     const backToTop = document.querySelector('.back-to-top');
-    const portal = document.querySelector('.student-portal');
-    const portalLoginBtn = document.querySelector('.portal-login-btn');
-    const portalClose = document.querySelector('.portal-close');
-    const portalLoginForm = document.querySelector('.portal-login-form');
-    const progressChart = document.querySelector('#progressChart');
-    const teacherPortal = document.querySelector('.teacher-portal');
-    const teacherLoginBtn = document.querySelector('.teacher-login-btn');
-    const teacherClose = document.querySelector('.teacher-close');
-    const teacherLoginForm = document.querySelector('.teacher-login-form');
-    const teacherActions = document.querySelectorAll('.teacher-action');
-    const attendanceButtons = document.querySelectorAll('.attendance-row button');
     const pointer = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
     const current = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
 
@@ -282,136 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    const drawProgressChart = () => {
-        if (!progressChart) return;
-        const ctx = progressChart.getContext('2d');
-        const width = progressChart.width;
-        const height = progressChart.height;
-        const scores = [62, 68, 74, 79, 84, 86, 91];
-        const padding = 34;
-
-        ctx.clearRect(0, 0, width, height);
-        ctx.lineWidth = 1;
-        ctx.strokeStyle = 'rgba(148, 163, 184, 0.18)';
-
-        for (let i = 0; i < 4; i += 1) {
-            const y = padding + ((height - padding * 2) / 3) * i;
-            ctx.beginPath();
-            ctx.moveTo(padding, y);
-            ctx.lineTo(width - padding, y);
-            ctx.stroke();
-        }
-
-        const points = scores.map((score, index) => {
-            const x = padding + ((width - padding * 2) / (scores.length - 1)) * index;
-            const y = height - padding - ((score - 50) / 50) * (height - padding * 2);
-            return { x, y };
-        });
-
-        const gradient = ctx.createLinearGradient(0, 0, width, 0);
-        gradient.addColorStop(0, '#4F46E5');
-        gradient.addColorStop(1, '#06B6D4');
-
-        ctx.beginPath();
-        points.forEach((point, index) => {
-            if (index === 0) ctx.moveTo(point.x, point.y);
-            else ctx.lineTo(point.x, point.y);
-        });
-        ctx.strokeStyle = gradient;
-        ctx.lineWidth = 4;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.stroke();
-
-        points.forEach(point => {
-            ctx.beginPath();
-            ctx.arc(point.x, point.y, 6, 0, Math.PI * 2);
-            ctx.fillStyle = '#06B6D4';
-            ctx.shadowColor = '#06B6D4';
-            ctx.shadowBlur = 14;
-            ctx.fill();
-            ctx.shadowBlur = 0;
-        });
-    };
-
-    const openPortal = () => {
-        if (!portal) return;
-        portal.classList.add('open');
-        portal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        setTimeout(drawProgressChart, 120);
-    };
-
-    const closePortal = () => {
-        if (!portal) return;
-        portal.classList.remove('open');
-        portal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    };
-
-    if (portalLoginBtn) {
-        portalLoginBtn.addEventListener('click', openPortal);
-    }
-
-    if (portalClose) {
-        portalClose.addEventListener('click', closePortal);
-    }
-
-    if (portal) {
-        portal.addEventListener('click', (event) => {
-            if (event.target.classList.contains('portal-backdrop')) {
-                closePortal();
-            }
-        });
-    }
-
-    if (portalLoginForm) {
-        portalLoginForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            openPortal();
-            drawProgressChart();
-        });
-    }
-
-    window.addEventListener('resize', drawProgressChart);
-
-    const openTeacherPortal = () => {
-        if (!teacherPortal) return;
-        teacherPortal.classList.add('open');
-        teacherPortal.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    };
-
-    const closeTeacherPortal = () => {
-        if (!teacherPortal) return;
-        teacherPortal.classList.remove('open');
-        teacherPortal.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    };
-
-    if (teacherLoginBtn) {
-        teacherLoginBtn.addEventListener('click', openTeacherPortal);
-    }
-
-    if (teacherClose) {
-        teacherClose.addEventListener('click', closeTeacherPortal);
-    }
-
-    if (teacherPortal) {
-        teacherPortal.addEventListener('click', (event) => {
-            if (event.target.classList.contains('teacher-backdrop')) {
-                closeTeacherPortal();
-            }
-        });
-    }
-
-    if (teacherLoginForm) {
-        teacherLoginForm.addEventListener('submit', (event) => {
-            event.preventDefault();
-            openTeacherPortal();
-        });
-    }
-
     const setFaqItemOpen = (item, open) => {
         const answer = item.querySelector('.faq-answer');
         item.classList.toggle('open', open);
@@ -436,32 +295,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const message = encodeURIComponent('Hi! I would like to know more about Project NOVA courses.');
         whatsappFab.href = `https://wa.me/${phone}?text=${message}`;
     }
-
-    attendanceButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const row = button.closest('.attendance-row');
-            if (!row) return;
-            row.querySelectorAll('button').forEach(item => item.classList.remove('active', 'present'));
-            button.classList.add('active');
-        });
-    });
-
-    teacherActions.forEach(button => {
-        button.addEventListener('click', () => {
-            const card = button.closest('.teacher-tool-card');
-            const status = card ? card.querySelector('.teacher-status') : null;
-            button.textContent = 'Saved';
-            setTimeout(() => {
-                button.textContent = button.dataset.originalText || 'Done';
-            }, 1200);
-            if (status) {
-                status.textContent = 'Announcement sent to the selected batch.';
-            }
-        });
-        button.dataset.originalText = button.textContent;
-    });
-
-    // AI assistant behavior removed from landing page
 
     const loader = document.getElementById('page-loader');
     const progressFill = document.querySelector('.progress-fill');

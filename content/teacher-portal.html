@@ -1,0 +1,141 @@
+        <section class="teacher-portal standalone open">
+
+            <div class="portal-shell teacher-shell">
+
+                <aside class="portal-login-panel teacher-login-panel">
+
+                    <span class="section-tag">TEACHER PORTAL</span>
+
+                    <h2>Faculty Command Center</h2>
+
+                    <p>Create tests, upload notes, mark attendance, publish videos and review student performance from one focused dashboard.</p>
+
+                    <form class="teacher-login-form">
+                        <label>
+                            Teacher ID
+                            <input type="text" name="teacherId" value="NOVA-FAC-01" required>
+                        </label>
+
+                        <label>
+                            Password
+                            <input type="password" name="password" value="faculty123" required>
+                        </label>
+
+                        <button type="submit" class="primary-btn magnetic">Open Teacher Dashboard</button>
+                    </form>
+
+                    <a class="teacher-close" href="/index.html" aria-label="Back to home">
+                        &times;
+                    </a>
+
+                </aside>
+
+                <div class="portal-dashboard teacher-dashboard">
+
+                    <div class="dashboard-topbar">
+                        <div>
+                            <span class="section-tag">FACULTY TOOLS</span>
+                            <h2>Teacher Dashboard</h2>
+                        </div>
+
+                        <div class="student-chip teacher-chip">
+                            <span>TR</span>
+                            <div>
+                                <strong>Science Faculty</strong>
+                                <small>Physics + Chemistry</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-stats">
+                        <div class="dash-stat">
+                            <span>Total Students</span>
+                            <strong>128</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Attendance Today</span>
+                            <strong>91%</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Tests Active</span>
+                            <strong>4</strong>
+                        </div>
+                        <div class="dash-stat">
+                            <span>Pending Reviews</span>
+                            <strong>17</strong>
+                        </div>
+                    </div>
+
+                    <div class="teacher-tool-grid">
+
+                        <article class="dashboard-card teacher-tool-card">
+                            <h3>Upload Notes</h3>
+                            <label>
+                                Topic
+                                <input type="text" placeholder="Electrostatics formulas">
+                            </label>
+                            <label>
+                                File
+                                <input type="file">
+                            </label>
+                            <button type="button" class="teacher-action">Publish Notes</button>
+                        </article>
+
+                        <article class="dashboard-card teacher-tool-card">
+                            <h3>Create Test</h3>
+                            <label>
+                                Test Name
+                                <input type="text" placeholder="Current Electricity Mock">
+                            </label>
+                            <label>
+                                Duration
+                                <select>
+                                    <option>45 minutes</option>
+                                    <option>60 minutes</option>
+                                    <option>90 minutes</option>
+                                </select>
+                            </label>
+                            <button type="button" class="teacher-action">Create Test</button>
+                        </article>
+
+                        <article class="dashboard-card teacher-tool-card attendance-tool">
+                            <h3>Mark Attendance</h3>
+                            <div class="attendance-row"><span>Rahul Sharma</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                            <div class="attendance-row"><span>Priya Das</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                            <div class="attendance-row"><span>Aman Singh</span><button type="button" class="present">Present</button><button type="button">Absent</button></div>
+                        </article>
+
+                        <article class="dashboard-card teacher-tool-card">
+                            <h3>Upload Videos</h3>
+                            <label>
+                                Lecture Title
+                                <input type="text" placeholder="Ray Optics Part 1">
+                            </label>
+                            <label>
+                                Video Link
+                                <input type="url" placeholder="https://...">
+                            </label>
+                            <button type="button" class="teacher-action">Add Lecture</button>
+                        </article>
+
+                        <article class="dashboard-card teacher-tool-card announcement-tool">
+                            <h3>Send Announcement</h3>
+                            <textarea rows="5" placeholder="Tomorrow's class starts at 5 PM. Bring your PYQ booklet."></textarea>
+                            <button type="button" class="teacher-action">Send to Batch</button>
+                            <p class="teacher-status" aria-live="polite"></p>
+                        </article>
+
+                        <article class="dashboard-card teacher-tool-card performance-tool">
+                            <h3>Student Performance</h3>
+                            <div class="score-line"><span>Class Avg.</span><div><b style="width:84%"></b></div><strong>84</strong></div>
+                            <div class="score-line"><span>Top Score</span><div><b style="width:96%"></b></div><strong>96</strong></div>
+                            <div class="score-line"><span>At Risk</span><div><b style="width:18%"></b></div><strong>7</strong></div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
