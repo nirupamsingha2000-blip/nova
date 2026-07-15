@@ -10,6 +10,19 @@
 
     <title>Project NOVA Platform | The Future of Science Education</title>
 
+    <meta name="description" content="Project NOVA by Nirupam Science Edge, Shillong — concept-first Physics, Chemistry & Maths coaching for Class 11, 12, Boards, CUET, JEE and NEET.">
+    <meta name="theme-color" content="#050816">
+    <!-- Add <link rel="canonical" href="https://YOUR-DOMAIN/"> once the site has a live domain -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Project NOVA Platform | The Future of Science Education">
+    <meta property="og:description" content="Concept-first Physics, Chemistry & Maths coaching for Class 11, 12, Boards, CUET, JEE and NEET — by Nirupam Science Edge, Shillong.">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Project NOVA Platform | The Future of Science Education">
+    <meta name="twitter:description" content="Concept-first Physics, Chemistry & Maths coaching for Class 11, 12, Boards, CUET, JEE and NEET — by Nirupam Science Edge, Shillong.">
+
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234F46E5'/%3E%3Cstop offset='1' stop-color='%2306B6D4'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%23050816'/%3E%3Ccircle cx='32' cy='32' r='23' fill='none' stroke='url(%23g)' stroke-width='4'/%3E%3Ccircle cx='32' cy='32' r='7' fill='url(%23g)'/%3E%3C/svg%3E">
+
     <!-- Google Fonts -->
 
     <link rel="preconnect"
@@ -79,22 +92,29 @@
 
             </div>
 
-            <ul class="nav-links">
+            <button class="mobile-menu-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="main-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <ul class="nav-links" id="main-nav">
 
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#courses">Courses</a></li>
                 <li><a href="#results">Results</a></li>
+                <li><a href="#faq">FAQ</a></li>
                 <li><a href="#contact">Contact</a></li>
 
             </ul>
 
-            <div class="nav-actions">
+            <button class="theme-toggle magnetic" type="button" aria-label="Switch to light mode">
+                <span class="sun-icon">&#9728;</span>
+                <span class="moon-icon">&#9790;</span>
+            </button>
 
-                <button class="theme-toggle magnetic" type="button" aria-label="Switch to light mode">
-                    <span class="sun-icon">&#9728;</span>
-                    <span class="moon-icon">&#9790;</span>
-                </button>
+            <div class="nav-actions">
 
                 <a href="#contact" class="primary-btn magnetic">
                     Book Demo
@@ -361,6 +381,71 @@
         </section>
 
         <!-- =========================
+        CONCEPT LAB (live physics simulator)
+========================== -->
+
+        <section class="concept-lab" id="concept-lab">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">SEE IT IN ACTION</span>
+
+                <h2>PHYSICS YOU CAN ACTUALLY SEE</h2>
+
+                <p>This is what "concept-first" means in practice — drag the sliders and watch real projectile motion respond instantly, on Earth or beyond it.</p>
+
+            </div>
+
+            <div class="concept-lab-grid">
+
+                <div class="concept-stage glass-card animate slide-right" data-animate="slide-right" data-delay="0.15">
+                    <canvas id="concept-canvas" width="640" height="420" role="img" aria-label="Projectile motion trajectory diagram"></canvas>
+                    <button type="button" class="primary-btn magnetic concept-launch">Launch Projectile</button>
+                </div>
+
+                <div class="concept-controls glass-card animate slide-left" data-animate="slide-left" data-delay="0.2">
+
+                    <div class="concept-field">
+                        <label for="concept-angle">Launch Angle <span class="concept-value" id="concept-angle-value">45°</span></label>
+                        <input type="range" id="concept-angle" min="5" max="85" value="45" step="1">
+                    </div>
+
+                    <div class="concept-field">
+                        <label for="concept-velocity">Launch Speed <span class="concept-value" id="concept-velocity-value">30 m/s</span></label>
+                        <input type="range" id="concept-velocity" min="10" max="60" value="30" step="1">
+                    </div>
+
+                    <div class="concept-field">
+                        <span class="concept-field-label">Gravity</span>
+                        <div class="gravity-chips">
+                            <button type="button" class="gravity-chip active" data-g="9.8">Earth</button>
+                            <button type="button" class="gravity-chip" data-g="1.62">Moon</button>
+                            <button type="button" class="gravity-chip" data-g="3.71">Mars</button>
+                        </div>
+                    </div>
+
+                    <div class="concept-readouts" aria-live="polite">
+                        <div class="concept-readout">
+                            <strong id="concept-range">0 m</strong>
+                            <span>Range</span>
+                        </div>
+                        <div class="concept-readout">
+                            <strong id="concept-height">0 m</strong>
+                            <span>Max Height</span>
+                        </div>
+                        <div class="concept-readout">
+                            <strong id="concept-time">0 s</strong>
+                            <span>Time of Flight</span>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- =========================
         COURSES
 ========================== -->
 
@@ -401,6 +486,28 @@
 
                     </p>
 
+                    <div class="course-subjects">
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">⚛️</span>
+                            <strong>Physics</strong>
+                            <span>Mechanics, Thermodynamics, Waves</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">🧪</span>
+                            <strong>Chemistry</strong>
+                            <span>Atomic Structure, Bonding, Organic Basics</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">📐</span>
+                            <strong>Maths</strong>
+                            <span>Trigonometry, Coordinate Geometry, Sets & Functions</span>
+                        </div>
+
+                    </div>
+
                     <ul>
 
                         <li>✓ Weekly Tests</li>
@@ -430,6 +537,28 @@
 
                     </p>
 
+                    <div class="course-subjects">
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">⚛️</span>
+                            <strong>Physics</strong>
+                            <span>Electrostatics, Optics, Modern Physics</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">🧪</span>
+                            <strong>Chemistry</strong>
+                            <span>Electrochemistry, Organic Reactions, Kinetics</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">📐</span>
+                            <strong>Maths</strong>
+                            <span>Calculus, Vectors & 3D, Probability</span>
+                        </div>
+
+                    </div>
+
                     <ul>
 
                         <li>✓ PYQ Practice</li>
@@ -456,6 +585,28 @@
                         JEE & NEET preparation.
 
                     </p>
+
+                    <div class="course-subjects">
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">⚛️</span>
+                            <strong>Physics</strong>
+                            <span>Motion & Force, Light & Sound</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">🧪</span>
+                            <strong>Chemistry</strong>
+                            <span>Matter & Atoms, Everyday Chemistry</span>
+                        </div>
+
+                        <div class="subject-pill">
+                            <span class="subject-pill-icon">📐</span>
+                            <strong>Maths</strong>
+                            <span>Number Systems, Basic Algebra</span>
+                        </div>
+
+                    </div>
 
                     <ul>
 
@@ -706,7 +857,7 @@
         TESTIMONIALS
 ========================== -->
 
-        <section class="testimonials" id="testimonials">
+        <section class="testimonials" id="testimonials-carousel">
 
             <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.12">
 
@@ -812,6 +963,84 @@
 
         </section>
 
+        <!-- =========================
+        FAQ
+========================== -->
+
+        <section class="faq" id="faq">
+
+            <div class="section-heading animate fade-up" data-animate="fade-up" data-delay="0.1">
+
+                <span class="section-tag">
+                    GOT QUESTIONS
+                </span>
+
+                <h2>
+                    FREQUENTLY ASKED QUESTIONS
+                </h2>
+
+                <p>
+                    Everything parents and students ask before joining.
+                </p>
+
+            </div>
+
+            <div class="faq-list">
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>What boards and exams does Project NOVA prepare students for?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We cover CBSE, MBOSE and other state boards for Class 11 & 12 Science, plus dedicated tracks for CUET, JEE and NEET preparation alongside regular schoolwork.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>How big are the batches?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We keep batches small by design so every student gets direct attention from mentors, with regular doubt-clearing sessions built into the weekly schedule.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Do you offer a trial or demo class before enrolling?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes — every new student can book a free demo class to experience our concept-first teaching style before committing to a program.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>How is student progress tracked and shared with parents?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Weekly tests, attendance and homework are logged in the student dashboard, and parents receive regular performance updates so they always know how their child is doing.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" type="button" aria-expanded="false">
+                        <span>Are notes and recorded lectures provided?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, every topic comes with structured notes and recorded lectures accessible from the student portal, so students can revise at their own pace.</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
         <section class="cta contact-section" id="contact">
 
             <div class="cta-container">
@@ -857,7 +1086,8 @@
 
                     </div>
 
-                    <form class="contact-form" id="contact-form">
+                    <!-- Sign up at https://formspree.io, create a form, and replace REPLACE_WITH_CONTACT_FORM_ID below with your form ID -->
+                    <form class="contact-form" id="contact-form" action="https://formspree.io/f/REPLACE_WITH_CONTACT_FORM_ID" method="POST">
 
                         <div class="form-heading">
 
@@ -891,6 +1121,9 @@
                             Message
                             <textarea name="message" rows="4" placeholder="Tell us what you need help with"></textarea>
                         </label>
+
+                        <input type="hidden" name="_subject" value="New demo enquiry from the website">
+                        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
 
                         <button class="primary-btn magnetic form-submit" type="submit">
                             Send Enquiry
@@ -1030,8 +1263,11 @@
 
                 <p>Get demo dates, exam tips and concept notes in your inbox.</p>
 
-                <form class="newsletter-form">
+                <!-- Reuse the same Formspree form ID as above, or create a second form if you want newsletter signups kept separate -->
+                <form class="newsletter-form" action="https://formspree.io/f/REPLACE_WITH_CONTACT_FORM_ID" method="POST">
                     <input type="email" name="email" placeholder="Email address" required>
+                    <input type="hidden" name="_subject" value="New newsletter signup from the website">
+                    <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
                     <button type="submit" class="magnetic">Join</button>
                 </form>
 
@@ -1055,6 +1291,44 @@
     <button class="back-to-top magnetic" type="button" aria-label="Back to top">
         &#128640;
     </button>
+
+    <!-- Replace data-phone below with the real WhatsApp business number (country code, digits only, e.g. 919812345678) -->
+    <a class="whatsapp-fab magnetic" href="#" data-phone="919000000000" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.47 14.38c-.29-.15-1.7-.84-1.96-.93-.26-.1-.46-.15-.65.15-.2.29-.75.93-.92 1.12-.17.2-.34.22-.63.08-.29-.15-1.22-.45-2.33-1.44-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.6.13-.13.29-.34.44-.51.15-.17.2-.29.29-.48.1-.2.05-.37-.02-.51-.08-.15-.65-1.58-.9-2.16-.24-.58-.48-.5-.65-.5-.17 0-.37-.02-.56-.02-.2 0-.51.07-.78.37-.26.29-1.02 1-1.02 2.42 0 1.43 1.05 2.82 1.19 3.01.15.2 2.06 3.15 5 4.42.7.3 1.24.48 1.67.61.7.22 1.34.19 1.84.12.56-.08 1.7-.7 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.2-.55-.34z"/><path d="M12.02 2C6.5 2 2.03 6.47 2.03 12c0 1.85.5 3.58 1.36 5.07L2 22l5.08-1.33A9.94 9.94 0 0 0 12.02 22C17.53 22 22 17.53 22 12S17.53 2 12.02 2zm0 18.15c-1.62 0-3.13-.44-4.43-1.2l-.32-.19-3.02.79.8-2.94-.2-.3a8.15 8.15 0 0 1-1.25-4.31c0-4.5 3.66-8.15 8.16-8.15 4.5 0 8.15 3.66 8.15 8.15 0 4.5-3.65 8.15-8.14 8.15z"/></svg>
+    </a>
+
+    <button class="ai-assistant-fab magnetic" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="ai-assistant-panel" aria-label="Open NOVA AI Assistant">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a1 1 0 0 1 1 1v1.06A8.004 8.004 0 0 1 19.94 11H21a1 1 0 1 1 0 2h-1.06A8.004 8.004 0 0 1 13 19.94V21a1 1 0 1 1-2 0v-1.06A8.004 8.004 0 0 1 4.06 13H3a1 1 0 1 1 0-2h1.06A8.004 8.004 0 0 1 11 4.06V3a1 1 0 0 1 1-1zm0 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm0 2.5a1 1 0 0 1 1 1v1.5h1.5a1 1 0 1 1 0 2H13v1.5a1 1 0 1 1-2 0V13H9.5a1 1 0 1 1 0-2H11V9.5a1 1 0 0 1 1-1z"/></svg>
+    </button>
+
+    <section class="ai-assistant-panel" id="ai-assistant-panel" role="dialog" aria-modal="false" aria-labelledby="ai-assistant-title" aria-hidden="true">
+
+        <div class="ai-assistant-header">
+            <div>
+                <strong id="ai-assistant-title">NOVA Assistant</strong>
+                <span>Ask about courses, demos, anything</span>
+            </div>
+            <button type="button" class="ai-assistant-close" aria-label="Close assistant">&times;</button>
+        </div>
+
+        <div class="ai-assistant-messages" id="ai-assistant-messages" aria-live="polite">
+            <div class="ai-msg ai-msg-bot">Hi! I'm the NOVA Assistant. Ask me about our courses, the free demo class, or anything about Project NOVA.</div>
+        </div>
+
+        <div class="ai-assistant-suggestions" id="ai-assistant-suggestions">
+            <button type="button" class="ai-suggestion-chip">What courses do you offer?</button>
+            <button type="button" class="ai-suggestion-chip">How do I book a free demo?</button>
+            <button type="button" class="ai-suggestion-chip">What boards and exams do you cover?</button>
+        </div>
+
+        <form class="ai-assistant-input-row" id="ai-assistant-form">
+            <input type="text" id="ai-assistant-input" placeholder="Type your question..." autocomplete="off" required>
+            <button type="submit" aria-label="Send message">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+            </button>
+        </form>
+
+    </section>
 
     <section class="student-portal" aria-hidden="true">
 
@@ -1332,6 +1606,8 @@
     <script src="assets/js/particles.js"></script>
     <script src="assets/js/loader-explosion.js"></script>
     <script src="assets/js/animations.js"></script>
+    <script src="assets/js/concept-lab.js"></script>
+    <script src="assets/js/ai-assistant.js"></script>
     <!-- Mentor script removed from landing page -->
     <!-- Visualize script removed -->
     <!-- Practice/Problem/Revise modules removed -->

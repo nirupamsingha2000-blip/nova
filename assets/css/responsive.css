@@ -1,5 +1,13 @@
 /* Responsive breakpoints for Project NOVA */
 
+/* vanilla-tilt glare effect isn't clipped by default and spills past the
+   card, forcing mobile browsers to widen the whole layout viewport. */
+.tilt-card{ overflow:hidden; }
+
+@media (hover:none), (pointer:coarse){
+	.custom-cursor{ display:none; }
+}
+
 @media (max-width: 1024px) {
 
 	.hero{ grid-template-columns: 1fr; padding:100px 6%; }
@@ -7,6 +15,8 @@
 	.hero-visual{ margin-top:40px; }
 
 	.about{ grid-template-columns: 1fr; padding:100px 6%; }
+
+	.concept-lab-grid{ grid-template-columns:1fr; }
 
 	.course-grid{ grid-template-columns: repeat(2,1fr); gap:24px; }
 
@@ -31,21 +41,44 @@
 
 }
 
+@media (max-width: 900px) {
+
+	.navbar{ padding:16px 20px; gap:14px; position:relative; flex-wrap:wrap; }
+
+	.mobile-menu-toggle{ display:inline-flex; order:1; margin-left:auto; }
+
+	.theme-toggle{ order:2; }
+
+	.nav-links{ display:none; width:100%; order:3; flex-direction:column; padding-top:10px; gap:12px; }
+
+	.nav-links.mobile-open{ display:flex; }
+
+	.nav-actions{ display:none; width:100%; order:4; flex-direction:column; align-items:stretch; gap:10px; padding-top:10px; }
+
+	.nav-links.mobile-open ~ .nav-actions{ display:flex; }
+
+	.nav-actions a,
+	.nav-actions button{ width:100%; justify-content:center; text-align:center; }
+
+}
+
 @media (max-width: 768px) {
 
 	.hero h1{ font-size:40px; }
 
 	.hero{ padding:80px 5%; gap:30px; }
 
+	.hero-content p{ max-width:100%; font-size:1rem; }
+
+	.hero-buttons{ flex-direction:column; align-items:stretch; }
+
+	.hero-buttons a{ width:100%; justify-content:center; text-align:center; }
+
 	.about{ padding:80px 5%; }
 
 	.course-grid{ grid-template-columns: 1fr; }
 
 	.results-grid{ grid-template-columns: repeat(2,1fr); }
-
-	.navbar{ padding:16px 20px; gap:18px; }
-
-	.nav-links{ display:none; }
 
 	.contact-info{ grid-template-columns:1fr; }
 
@@ -62,6 +95,11 @@
 	.footer-newsletter{ grid-column:auto; }
 
 	.back-to-top{ right:92px; bottom:28px; }
+
+	.whatsapp-fab{ left:20px; bottom:28px; }
+
+	.ai-assistant-fab{ left:20px; bottom:98px; }
+	.ai-assistant-panel{ left:20px; bottom:98px; }
 
 	.dashboard-topbar{ grid-template-columns:1fr; }
 
@@ -80,31 +118,48 @@
 
 	.teacher-tool-grid{ grid-template-columns:1fr; }
 
-	.nav-actions{ flex-wrap:wrap; justify-content:flex-end; }
-
 }
 
 @media (max-width: 480px) {
 
-	.hero h1{ font-size:32px; }
+	.hero h1{ font-size:32px; line-height:1.08; }
 
 	.hero{ padding:60px 4%; }
+
+	.hero-content p{ font-size:0.95rem; }
 
 	.section-heading h2{ font-size:28px; }
 
 	.results-grid{ grid-template-columns: 1fr; }
 
-	.nav-actions{ gap:10px; }
+	.course-subjects{ grid-template-columns:1fr; gap:8px; }
+
+	.subject-pill{ flex-direction:row; text-align:left; padding:10px 12px; }
+
+	.navbar{ padding:14px 16px; }
+
+	.nav-actions{ gap:8px; }
 
 	.theme-toggle{ width:42px; height:42px; }
+
+	.primary-btn,
+	.btn-primary,
+	.btn-secondary,
+	.portal-login-btn,
+	.teacher-login-btn{ padding:12px 14px; font-size:14px; }
 
 	.contact-form{ padding:22px; }
 
 	.form-heading h3{ font-size:26px; }
 
-	/* AI assistant responsive rules removed */
-
 	.back-to-top{ right:84px; bottom:18px; width:52px; height:52px; font-size:22px; }
+
+	.whatsapp-fab{ left:16px; bottom:18px; width:50px; height:50px; }
+	.whatsapp-fab svg{ width:26px; height:26px; }
+
+	.ai-assistant-fab{ left:16px; bottom:80px; width:50px; height:50px; }
+	.ai-assistant-fab svg{ width:24px; height:24px; }
+	.ai-assistant-panel{ left:16px; right:16px; bottom:80px; width:auto; max-width:none; max-height:60vh; }
 
 	.newsletter-form{ border-radius:18px; align-items:stretch; }
 

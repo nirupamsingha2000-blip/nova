@@ -174,6 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     // Cinematic loader orchestration
+    // The full intro only plays once per browser (first visit). Repeat visits
+    // get a quick fade instead of sitting through the ~8s sequence again.
+    const loaderSeenKey = 'novaLoaderSeen';
+    const skipCinematic = localStorage.getItem(loaderSeenKey) === '1';
+
     const pageLoader = document.getElementById('page-loader');
     if (pageLoader) {
         const progressFill = pageLoader.querySelector('.progress-fill');
@@ -186,76 +191,86 @@ document.addEventListener('DOMContentLoaded', () => {
         const navbarEl = document.querySelector('.navbar');
         const heroButtons = document.querySelector('.hero-buttons');
 
-        const showStep = (index, delay = 600, pct) => new Promise(resolve => {
-            setTimeout(() => {
-                if (steps[index]) steps[index].classList.add('show');
-                if (typeof pct === 'number') {
-                    progressFill.style.width = pct + '%';
-                    if (progressText) progressText.textContent = pct + '%';
-                }
-                resolve();
-            }, delay);
-        });
+        const revealPage = () => {
+            pageLoader.classList.add('loaded');
+            if (heroContent) heroContent.classList.add('visible', 'cinematic-show');
+            if (heroVisual) heroVisual.classList.add('visible', 'cinematic-show');
+            if (orb) orb.classList.add('assemble');
+            if (navbarEl) navbarEl.classList.add('show');
+            if (heroButtons) heroButtons.classList.add('show');
+            localStorage.setItem(loaderSeenKey, '1');
+        };
 
-        (async function cinematic() {
-            try {
-                await showStep(0, 420, 12);
-                await showStep(1, 680, 34);
-                await showStep(2, 680, 58);
-                await showStep(3, 680, 79);
-                await showStep(4, 700, 97);
-
-                await new Promise(r => setTimeout(r, 420));
-                progressFill.style.width = '100%';
-                if (progressText) progressText.textContent = '100%';
-
-                // animate loader identity ticker
-                const identityEl = pageLoader.querySelector('#loader-identity');
-                if (identityEl) {
-                    const modules = ['Electrostatics','Projectile Motion','Organic Chemistry','Matrices','Artificial Intelligence','Ready.'];
-                    for (let i=0;i<modules.length;i++){
-                        identityEl.textContent = modules[i] + ' •••';
-                        await new Promise(r=>setTimeout(r, 420 + i*120));
+        if (skipCinematic) {
+            if (progressFill) progressFill.style.width = '100%';
+            if (progressText) progressText.textContent = '100%';
+            setTimeout(revealPage, 300);
+        } else {
+            const showStep = (index, delay = 600, pct) => new Promise(resolve => {
+                setTimeout(() => {
+                    if (steps[index]) steps[index].classList.add('show');
+                    if (typeof pct === 'number') {
+                        progressFill.style.width = pct + '%';
+                        if (progressText) progressText.textContent = pct + '%';
                     }
-                    identityEl.textContent = 'Everything assembles.';
-                    await new Promise(r=>setTimeout(r, 420));
+                    resolve();
+                }, delay);
+            });
+
+            (async function cinematic() {
+                try {
+                    await showStep(0, 420, 12);
+                    await showStep(1, 680, 34);
+                    await showStep(2, 680, 58);
+                    await showStep(3, 680, 79);
+                    await showStep(4, 700, 97);
+
+                    await new Promise(r => setTimeout(r, 420));
+                    progressFill.style.width = '100%';
+                    if (progressText) progressText.textContent = '100%';
+
+                    // animate loader identity ticker
+                    const identityEl = pageLoader.querySelector('#loader-identity');
+                    if (identityEl) {
+                        const modules = ['Electrostatics','Projectile Motion','Organic Chemistry','Matrices','Artificial Intelligence','Ready.'];
+                        for (let i=0;i<modules.length;i++){
+                            identityEl.textContent = modules[i] + ' •••';
+                            await new Promise(r=>setTimeout(r, 420 + i*120));
+                        }
+                        identityEl.textContent = 'Everything assembles.';
+                        await new Promise(r=>setTimeout(r, 420));
+                    }
+
+                    if (logo) logo.classList.add('logo-explode');
+                    await new Promise(r => setTimeout(r, 360));
+
+                    // trigger particle explosion from canvas (if available)
+                    const explCanvas = document.getElementById('loader-explosion-canvas');
+                    if (explCanvas && window.createLoaderExplosion) {
+                        try { window.createLoaderExplosion(explCanvas); } catch (e) { console.warn(e); }
+                    }
+
+                    revealPage();
+
+                } catch (e) {
+                    console.error('Loader sequence error', e);
+                    revealPage();
                 }
-
-                if (logo) logo.classList.add('logo-explode');
-                await new Promise(r => setTimeout(r, 360));
-
-                // trigger particle explosion from canvas (if available)
-                const explCanvas = document.getElementById('loader-explosion-canvas');
-                if (explCanvas && window.createLoaderExplosion) {
-                    try { window.createLoaderExplosion(explCanvas); } catch (e) { console.warn(e); }
-                }
-
-                // hide loader and reveal page pieces
-                pageLoader.classList.add('loaded');
-
-                if (heroContent) {
-                    heroContent.classList.add('visible', 'cinematic-show');
-                }
-                if (heroVisual) heroVisual.classList.add('visible', 'cinematic-show');
-                if (orb) orb.classList.add('assemble');
-                if (navbarEl) navbarEl.classList.add('show');
-                if (heroButtons) heroButtons.classList.add('show');
-
-            } catch (e) {
-                console.error('Loader sequence error', e);
-                pageLoader.classList.add('loaded');
-            }
-        })();
+            })();
+        }
     }
 
-    // Ensure loader doesn't block input forever: force-hide after 6.5s
+    // Ensure loader doesn't block input forever, even if something above throws.
+    // Repeat visits get a short leash; first visits get enough room for the full
+    // ~8.7s cinematic sequence to actually finish before this safety net kicks in.
     setTimeout(() => {
         const loaderEl = document.getElementById('page-loader');
         if (loaderEl && !loaderEl.classList.contains('loaded')) {
             console.warn('Forcing loader hide to avoid blocking input');
             loaderEl.classList.add('loaded');
+            localStorage.setItem(loaderSeenKey, '1');
         }
-    }, 6500);
+    }, skipCinematic ? 2000 : 10000);
 
     // RAF loop to drive Lenis and scroll-linked reveals + hero physics
     const revealEls = Array.from(document.querySelectorAll('[data-animate]'));
@@ -378,19 +393,29 @@ document.addEventListener('DOMContentLoaded', () => {
         const href = a.getAttribute('href');
         // only intercept internal anchors and same-page links
         if (!href || href.startsWith('http') || href.startsWith('mailto:') || href.startsWith('#')===false) return;
+        const targetId = href.slice(1);
+        const targetEl = targetId ? document.getElementById(targetId) : null;
+        if (!targetEl) return;
         a.addEventListener('click', (e) => {
             e.preventDefault();
-            const target = a.getAttribute('href');
+            let canvas;
             if (transitionOverlay) {
                 transitionOverlay.classList.add('active');
                 // small explosion effect in center
-                const canvas = document.createElement('canvas');
+                canvas = document.createElement('canvas');
                 canvas.style.position='absolute'; canvas.style.inset='0'; canvas.style.width='100%'; canvas.style.height='100%'; canvas.style.pointerEvents='none';
                 transitionOverlay.appendChild(canvas);
                 try { if (window.createLoaderExplosion) window.createLoaderExplosion(canvas); } catch(e){}
             }
             setTimeout(() => {
-                window.location.href = target;
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                history.pushState(null, '', href);
+                setTimeout(() => {
+                    if (transitionOverlay) {
+                        transitionOverlay.classList.remove('active');
+                        if (canvas) canvas.remove();
+                    }
+                }, 500);
             }, 650);
         });
     });

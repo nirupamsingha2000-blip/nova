@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.custom-cursor');
     const magneticButtons = document.querySelectorAll('.magnetic');
     const themeToggle = document.querySelector('.theme-toggle');
+    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+    const navLinks = document.querySelector('.nav-links');
     const contactForm = document.querySelector('#contact-form');
     const newsletterForm = document.querySelector('.newsletter-form');
     const backToTop = document.querySelector('.back-to-top');
@@ -80,6 +82,38 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const closeMobileMenu = () => {
+        if (navLinks) {
+            navLinks.classList.remove('mobile-open');
+        }
+        if (mobileMenuToggle) {
+            mobileMenuToggle.classList.remove('active');
+            mobileMenuToggle.setAttribute('aria-expanded', 'false');
+        }
+    };
+
+    if (mobileMenuToggle && navLinks) {
+        mobileMenuToggle.addEventListener('click', () => {
+            const isOpen = navLinks.classList.toggle('mobile-open');
+            mobileMenuToggle.classList.toggle('active', isOpen);
+            mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+        });
+
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        document.querySelectorAll('.nav-actions a, .nav-actions button').forEach(el => {
+            el.addEventListener('click', closeMobileMenu);
+        });
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                closeMobileMenu();
+            }
+        });
+    }
+
     magneticButtons.forEach(button => {
         let isHovering = false;
 
@@ -140,36 +174,64 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const submitToFormspree = async (form, { onSuccess, onError }) => {
+        if (form.action.includes('REPLACE_WITH_CONTACT_FORM_ID')) {
+            onError('This form is not connected yet — sign up at formspree.io and add your form ID.');
+            return;
+        }
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: { Accept: 'application/json' }
+            });
+            if (response.ok) {
+                onSuccess();
+            } else {
+                onError('Something went wrong sending that. Please call or WhatsApp us instead.');
+            }
+        } catch (err) {
+            onError('Could not reach the server. Please call or WhatsApp us instead.');
+        }
+    };
+
     if (contactForm) {
         contactForm.addEventListener('submit', (event) => {
             event.preventDefault();
 
-            const formData = new FormData(contactForm);
-            const name = formData.get('name') || '';
-            const phone = formData.get('phone') || '';
-            const program = formData.get('program') || '';
-            const message = formData.get('message') || '';
             const status = contactForm.querySelector('.form-status');
+            const submitBtn = contactForm.querySelector('.form-submit');
 
             if (!contactForm.checkValidity()) {
                 contactForm.reportValidity();
                 return;
             }
 
-            const subject = encodeURIComponent(`Demo enquiry from ${name}`);
-            const body = encodeURIComponent(
-                `Student Name: ${name}\nPhone: ${phone}\nProgram: ${program}\nMessage: ${message}`
-            );
-
-            contactForm.classList.add('sent');
+            if (submitBtn) submitBtn.disabled = true;
             if (status) {
-                status.textContent = 'Enquiry ready. Opening your email app now.';
-                status.classList.add('success');
+                status.textContent = 'Sending your enquiry...';
+                status.classList.remove('error');
+                status.classList.remove('success');
             }
 
-            setTimeout(() => {
-                window.location.href = `mailto:info@nse.com?subject=${subject}&body=${body}`;
-            }, 650);
+            submitToFormspree(contactForm, {
+                onSuccess: () => {
+                    contactForm.classList.add('sent');
+                    if (status) {
+                        status.textContent = 'Thanks! We have received your enquiry and will get back to you soon.';
+                        status.classList.add('success');
+                    }
+                    contactForm.reset();
+                    if (submitBtn) submitBtn.disabled = false;
+                },
+                onError: (message) => {
+                    if (status) {
+                        status.textContent = message;
+                        status.classList.add('error');
+                    }
+                    if (submitBtn) submitBtn.disabled = false;
+                }
+            });
         });
     }
 
@@ -177,17 +239,30 @@ document.addEventListener('DOMContentLoaded', () => {
         newsletterForm.addEventListener('submit', (event) => {
             event.preventDefault();
             const status = document.querySelector('.newsletter-status');
-            const emailInput = newsletterForm.querySelector('input');
+            const emailInput = newsletterForm.querySelector('input[type="email"]');
+
             if (!newsletterForm.checkValidity()) {
                 newsletterForm.reportValidity();
                 return;
             }
+
             if (status) {
-                status.textContent = 'You are in. Science updates will reach your inbox.';
+                status.textContent = 'Submitting...';
+                status.classList.remove('error');
             }
-            if (emailInput) {
-                emailInput.value = '';
-            }
+
+            submitToFormspree(newsletterForm, {
+                onSuccess: () => {
+                    if (status) status.textContent = 'You are in. Science updates will reach your inbox.';
+                    if (emailInput) emailInput.value = '';
+                },
+                onError: (message) => {
+                    if (status) {
+                        status.textContent = message;
+                        status.classList.add('error');
+                    }
+                }
+            });
         });
     }
 
@@ -337,6 +412,31 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    const setFaqItemOpen = (item, open) => {
+        const answer = item.querySelector('.faq-answer');
+        item.classList.toggle('open', open);
+        item.querySelector('.faq-question').setAttribute('aria-expanded', String(open));
+        answer.style.maxHeight = open ? `${answer.scrollHeight}px` : '0px';
+    };
+
+    document.querySelectorAll('.faq-item .faq-question').forEach(question => {
+        question.addEventListener('click', () => {
+            const item = question.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item.open').forEach(openItem => {
+                if (openItem !== item) setFaqItemOpen(openItem, false);
+            });
+            setFaqItemOpen(item, !isOpen);
+        });
+    });
+
+    const whatsappFab = document.querySelector('.whatsapp-fab');
+    if (whatsappFab) {
+        const phone = whatsappFab.dataset.phone;
+        const message = encodeURIComponent('Hi! I would like to know more about Project NOVA courses.');
+        whatsappFab.href = `https://wa.me/${phone}?text=${message}`;
+    }
+
     attendanceButtons.forEach(button => {
         button.addEventListener('click', () => {
             const row = button.closest('.attendance-row');
@@ -366,6 +466,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('page-loader');
     const progressFill = document.querySelector('.progress-fill');
     const progressText = document.querySelector('.loader-percent') || document.querySelector('.progress-text');
+    const skipCinematicLoader = localStorage.getItem('novaLoaderSeen') === '1';
     let progress = 0;
 
     const updateProgressUI = (value) => {
@@ -373,20 +474,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if (progressText) progressText.textContent = `${value}%`;
     };
 
-    const progressTimer = setInterval(() => {
+    // On a first visit, animations.js runs the full cinematic intro and is
+    // responsible for hiding the loader once it finishes — this handler only
+    // takes over the (much faster) hide on repeat visits, so the two paths
+    // don't race and cut the intro off early.
+    const progressTimer = skipCinematicLoader ? null : setInterval(() => {
         if (progress >= 97) return;
         progress = Math.min(97, progress + Math.floor(Math.random() * 6) + 1);
         updateProgressUI(progress);
     }, 90);
 
-    window.addEventListener('load', () => {
-        clearInterval(progressTimer);
-        progress = 100;
-        updateProgressUI(progress);
-        setTimeout(() => {
-            if (loader) loader.classList.add('loaded');
-        }, 450);
-    });
+    if (skipCinematicLoader) {
+        window.addEventListener('load', () => {
+            updateProgressUI(100);
+            setTimeout(() => {
+                if (loader) loader.classList.add('loaded');
+            }, 200);
+        });
+    }
 
     updateCursor();
 
@@ -536,17 +641,5 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }, { threshold: 0.16 });
             ctaObs.observe(cta);
-        }
-
-        // Simple newsletter form feedback
-        const newsletterForm = document.querySelector('.newsletter-form');
-        const newsletterStatus = document.querySelector('.newsletter-status');
-        if (newsletterForm && newsletterStatus) {
-            newsletterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                newsletterStatus.textContent = 'Thanks — check your inbox!';
-                newsletterForm.reset();
-                setTimeout(() => newsletterStatus.textContent = '', 4200);
-            });
         }
 });
